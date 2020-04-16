@@ -22,7 +22,7 @@ Do not forget the  `flutter pub get`
 	- [x] Copy password
 - [ ] v0.2.0 Talenting
 	- [x] Pull to refresh in main screen
-	- [ ] Swipe to delete credential
+	- [x] Swipe to delete credential
 	- [ ] Update credential
 	- [ ] Create new credential
 	- [ ] Generate password

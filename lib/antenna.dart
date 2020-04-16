@@ -55,7 +55,6 @@ class Antenna {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-
     String url = "http://$server/logins";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response = await get(url, headers: headers);
@@ -72,5 +71,14 @@ class Antenna {
     Response response = await get(url, headers: headers);
     List<Credential> credentials = (jsonDecode(response.body) as List).map((i) => Credential.fromJson(i)).toList();
     return credentials;
+  }
+
+  deleteCredential(int id) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String server = preferences.getString("server");
+    String token = preferences.getString("token");
+    String url = "http://$server/logins/$id";
+    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
+    await delete(url, headers: headers);
   }
 }
