@@ -20,6 +20,11 @@ class _HomePageState extends State<HomePage> {
     future = Antenna().getCredentials();
   }
 
+  Future<void> refresh() async {
+    await Future.delayed(Duration(milliseconds: 400));
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     if (searchQuery == "") {
@@ -54,77 +59,80 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          TextField(
-            autocorrect: false,
-            decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search)
+      body: RefreshIndicator(
+        onRefresh: refresh,
+        child: Column(
+          children: <Widget>[
+            TextField(
+              autocorrect: false,
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search)
+              ),
+              onChanged: (text) {
+                setState(() {
+                  searchQuery = text;
+                });
+              },
             ),
-            onChanged: (text) {
-              setState(() {
-                searchQuery = text;
-              });
-            },
-          ),
-          FutureBuilder(
-            future: future,
-            builder: (BuildContext context, AsyncSnapshot<List<Credential>> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Expanded(
-                  child: ListView.builder(
-                    padding: EdgeInsets.all(10),
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      if (snapshot.data.length == 0) {
-                        //TODO: Test no data situation
-                        return Center(child: Text("No Data"));
-                      } else {
-                        return Card(
-                          child: ListTile(
-                            title: Text(snapshot.data[index].url),
-                            subtitle: Text(snapshot.data[index].username),
-                            trailing: PopupMenuButton(
-                              icon: Icon(Icons.more_vert),
-                              itemBuilder: (BuildContext context) => [
-                                PopupMenuItem(
-                                  value: 0,
-                                  child: Text("Copy Username"),
-                                ),
-                                PopupMenuItem(
-                                  value: 1,
-                                  child: Text("Copy Password"),
-                                )
-                              ],
-                              onSelected: (value) {
-                                switch (value) {
-                                  case 0:
-                                    {
-                                      Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
-                                      print("Username copied to Clipboard: " + snapshot.data[index].username);
-                                      break;
-                                    }
-                                  case 1:
-                                    {
-                                      Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
-                                      print("Password copied to Clipboard: " + snapshot.data[index].password);
-                                      break;
-                                    }
-                                }
-                              },
+            FutureBuilder(
+              future: future,
+              builder: (BuildContext context, AsyncSnapshot<List<Credential>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Expanded(
+                    child: ListView.builder(
+                      padding: EdgeInsets.all(10),
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        if (snapshot.data.length == 0) {
+                          //TODO: Test no data situation
+                          return Center(child: Text("No Data"));
+                        } else {
+                          return Card(
+                            child: ListTile(
+                              title: Text(snapshot.data[index].url),
+                              subtitle: Text(snapshot.data[index].username),
+                              trailing: PopupMenuButton(
+                                icon: Icon(Icons.more_vert),
+                                itemBuilder: (BuildContext context) => [
+                                  PopupMenuItem(
+                                    value: 0,
+                                    child: Text("Copy Username"),
+                                  ),
+                                  PopupMenuItem(
+                                    value: 1,
+                                    child: Text("Copy Password"),
+                                  )
+                                ],
+                                onSelected: (value) {
+                                  switch (value) {
+                                    case 0:
+                                      {
+                                        Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
+                                        print("Username copied to Clipboard: " + snapshot.data[index].username);
+                                        break;
+                                      }
+                                    case 1:
+                                      {
+                                        Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
+                                        print("Password copied to Clipboard: " + snapshot.data[index].password);
+                                        break;
+                                      }
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        ],
+                          );
+                        }
+                      },
+                    ),
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
