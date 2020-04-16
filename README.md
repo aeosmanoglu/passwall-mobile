@@ -37,4 +37,9 @@ Do not forget the  `flutter pub get`
 - [ ] v0.4.0 Polishing
 	- [ ] Logo
 	- [ ] UI customise  
-- [ ] V1.0.0 Compile’n release 
+- [ ] V1.0.0 Compile’n release
+
+## Some Screen Shots
+![Login Screen](screenshots/login.png)
+![Main Screen](screenshots/main.png)
+![Copy Actions](screenshots/copy.png)
