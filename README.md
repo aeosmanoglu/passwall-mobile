@@ -40,6 +40,17 @@ Do not forget the  `flutter pub get`
 - [ ] V1.0.0 Compile’n release
 
 ## Some Screen Shots
-![Login Screen](screenshots/login.png)
-![Main Screen](screenshots/main.png)
-![Copy Actions](screenshots/copy.png)
+<table>
+  <tr>
+    <th><img src="screenshots/login.png" alt="Login Screen" width="250"/></th>
+    <th><img src="screenshots/main.png" alt="Main Screen" width="250"/></th>
+    <th><img src="screenshots/copy.png" alt="Copy Actions" width="250"/></th>
+  </tr>
+  <tr>
+    <td>Login Screen</td>
+    <td>Main Screen</td>
+    <td>Copy Actions</td>
+  </tr>
+</table>
+
+
