@@ -20,14 +20,14 @@ Do not forget the  `flutter pub get`
 	- [x] Get all credentials *(Url or Title, Username and Password)* and list them on the main screen
 	- [x] Search in credentials
 	- [x] Copy password
-- [ ] v0.2.0 Growing Up
+- [x] v0.2.0 Growing Up
 	- [x] Pull to refresh in main screen
 	- [x] Swipe to delete credential
 	- [x] Update credential
 	- [x] Create new credential
 	- [x] Generate password
-	- [ ] Order the list
-	- [ ] Keeping logs
+	- [ ] ~~Order the list~~
+	- [x] Keeping logs
 - [ ] v0.3.0 Trading
 	- [ ] Export credential
 	- [ ] Import credential
