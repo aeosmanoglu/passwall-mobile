@@ -5,9 +5,9 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Antenna {
-
   /// This is the main function that the access token still valid.
   /// So we can understand user is authorized or not.
+  /// TODO: Must use every connection
   Future<bool> gateKeeper(String token) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server") ?? "localhost:3625";
@@ -20,7 +20,7 @@ class Antenna {
     // the header value. Fot that reason, we are trying to get response.
     try {
       response = await post(url, headers: headers);
-    } catch(e) {
+    } catch (e) {
       print(e);
       return false;
     }
@@ -41,7 +41,6 @@ class Antenna {
 
     Map<String, dynamic> answer = jsonDecode(response.body);
     print(answer["message"] ?? answer["token"]);
-
 
     if (response.statusCode == 200) {
       preferences.setString("token", answer["token"]);
@@ -80,5 +79,16 @@ class Antenna {
     String url = "http://$server/logins/$id";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     await delete(url, headers: headers);
+  }
+
+  create({String title = "", String username = "", String password}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String server = preferences.getString("server");
+    String token = preferences.getString("token");
+    String url = "http://$server/logins/";
+    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "application/json"};
+    String body = jsonEncode({"URL": title, "Username": username, "Password": password});
+    Response response = await post(url, headers: headers, body: body);
+    print("Create: " + response.statusCode.toString());
   }
 }

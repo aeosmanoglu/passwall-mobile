@@ -12,7 +12,7 @@ Do not forget the  `flutter pub get`
 
 ## Mile Stones
 
-- [x] v0.1.0 Waking-Up
+- [x] v0.1.0 Waking Up
 	- [x] Authentication
 		- [x] Login
 		- [x] Check token. If valid, redirect to main screen
@@ -20,13 +20,14 @@ Do not forget the  `flutter pub get`
 	- [x] Get all credentials *(Url or Title, Username and Password)* and list them on the main screen
 	- [x] Search in credentials
 	- [x] Copy password
-- [ ] v0.2.0 Talenting
+- [ ] v0.2.0 Growing Up
 	- [x] Pull to refresh in main screen
 	- [x] Swipe to delete credential
 	- [ ] Update credential
-	- [ ] Create new credential
+	- [x] Create new credential
 	- [ ] Generate password
 	- [ ] Order the list
+	- [ ] Keeping logs
 - [ ] v0.3.0 Trading
 	- [ ] Export credential
 	- [ ] Import credential

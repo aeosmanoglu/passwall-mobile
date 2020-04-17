@@ -65,9 +65,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             TextField(
               autocorrect: false,
-              decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search)
-              ),
+              decoration: InputDecoration(prefixIcon: Icon(Icons.search)),
               onChanged: (text) {
                 setState(() {
                   searchQuery = text;
@@ -153,6 +151,67 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: creator,
+      ),
+    );
+  }
+
+  void creator() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String title = "";
+        String username = "";
+        String password = "";
+        return AlertDialog(
+          title: Text("Create new credential"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                autocorrect: false,
+                decoration: InputDecoration(labelText: "Title", hintText: "http://passwall.io"),
+                onChanged: (text) {
+                  title = text;
+                },
+              ),
+              TextField(
+                autocorrect: false,
+                decoration: InputDecoration(labelText: "Username"),
+                onChanged: (text) {
+                  username = text;
+                },
+              ),
+              TextField(
+                autocorrect: false,
+                decoration: InputDecoration(labelText: "Password", helperText: "Leave blank for a random password"),
+                onChanged: (text) {
+                  password = text;
+                },
+              )
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("CANCEL"),
+              textColor: Colors.red,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text("SAVE"),
+              onPressed: () async {
+                await Antenna().create(title: title, username: username, password: password);
+                Navigator.of(context).pop();
+                setState(() {});
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
