@@ -55,9 +55,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20),
+      body: SafeArea(
         child: ListView(
+          padding: EdgeInsets.all(20),
           children: <Widget>[
             //TODO: Save user base url. It's gonna be boring typing again and again
             textField(

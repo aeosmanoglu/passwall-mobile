@@ -1,4 +1,5 @@
 import 'package:Passwall/antenna.dart';
+import 'package:Passwall/detail_page.dart';
 import 'package:Passwall/login_page.dart';
 import 'package:Passwall/objects.dart';
 import 'package:flutter/material.dart';
@@ -105,6 +106,9 @@ class _HomePageState extends State<HomePage> {
                             //TODO: Confirm dismiss or Toast bar Undo
                             child: Card(
                               child: ListTile(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(snapshot.data[index])));
+                                },
                                 title: Text(snapshot.data[index].url),
                                 subtitle: Text(snapshot.data[index].username),
                                 trailing: PopupMenuButton(

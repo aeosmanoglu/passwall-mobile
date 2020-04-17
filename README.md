@@ -23,9 +23,9 @@ Do not forget the  `flutter pub get`
 - [ ] v0.2.0 Growing Up
 	- [x] Pull to refresh in main screen
 	- [x] Swipe to delete credential
-	- [ ] Update credential
+	- [x] Update credential
 	- [x] Create new credential
-	- [ ] Generate password
+	- [x] Generate password
 	- [ ] Order the list
 	- [ ] Keeping logs
 - [ ] v0.3.0 Trading
@@ -48,18 +48,18 @@ Do not forget the  `flutter pub get`
     <td><img src="screenshots/copy.png" alt="Copy Actions"/></td>
   </tr>
   <tr>
-    <td>Login Screen</td>
-    <td>Main Screen</td>
-    <td>Copy Actions</td>
+    <td>Login Screen:point_up:</td>
+    <td>Main Screen:point_up:</td>
+    <td>Copy Actions:point_up:</td>
     
   </tr>
   <tr>
     <td><img src="screenshots/create.png" alt="Create Dialog"/></td>
-    <td></td>
+    <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
     <td></td>
   <tr>
-    <td>Create Dialog</td>
-    <td></td>
+    <td>Create Dialog:point_up:</td>
+    <td>Detail Screen:point_up:</td>
     <td></td>
   </tr>
 </table>

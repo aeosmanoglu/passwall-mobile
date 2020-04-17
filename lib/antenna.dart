@@ -91,4 +91,25 @@ class Antenna {
     Response response = await post(url, headers: headers, body: body);
     print("Create: " + response.statusCode.toString());
   }
+
+  Future<String> generatePassword() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String server = preferences.getString("server");
+    String token = preferences.getString("token");
+    String url = "http://$server/logins/generate-password";
+    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
+    Response response = await post(url, headers: headers);
+    Map<String, dynamic> answer = jsonDecode(response.body);
+    return answer["Message"];
+  }
+
+  update(int id, String title, String username, String password) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String server = preferences.getString("server");
+    String token = preferences.getString("token");
+    String url = "http://$server/logins/$id";
+    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "application/json"};
+    String body = jsonEncode({"URL": title, "Username": username, "Password": password});
+    await put(url, headers: headers, body: body);
+  }
 }
