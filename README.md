@@ -43,14 +43,24 @@ Do not forget the  `flutter pub get`
 ## Some Screen Shots
 <table>
   <tr>
-    <th><img src="screenshots/login.png" alt="Login Screen" width="250"/></th>
-    <th><img src="screenshots/main.png" alt="Main Screen" width="250"/></th>
-    <th><img src="screenshots/copy.png" alt="Copy Actions" width="250"/></th>
+    <td><img src="screenshots/login.png" alt="Login Screen"/></td>
+    <td><img src="screenshots/main.png" alt="Main Screen"/></td>
+    <td><img src="screenshots/copy.png" alt="Copy Actions"/></td>
   </tr>
   <tr>
     <td>Login Screen</td>
     <td>Main Screen</td>
     <td>Copy Actions</td>
+    
+  </tr>
+  <tr>
+    <td><img src="screenshots/create.png" alt="Create Dialog"/></td>
+    <td></td>
+    <td></td>
+  <tr>
+    <td>Create Dialog</td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
