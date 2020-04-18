@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return Expanded(
                     child: ListView.builder(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 80),
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         if (snapshot.data.length == 0) {
