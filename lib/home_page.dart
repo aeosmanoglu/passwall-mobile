@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
     future = Antenna().getCredentials();
+    super.initState();
   }
 
   Future<void> refresh() async {
@@ -28,11 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (searchQuery == "") {
-      future = Antenna().getCredentials();
-    } else {
-      future = Antenna().search(searchQuery);
-    }
+    future = searchQuery == "" ? Antenna().getCredentials() : Antenna().search(searchQuery);
     return Scaffold(
       appBar: AppBar(
         title: Text("PassWall"),
@@ -40,12 +36,7 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
-            itemBuilder: (BuildContext context) => [
-              PopupMenuItem(
-                value: 0,
-                child: Text("Log Out"),
-              )
-            ],
+            itemBuilder: (BuildContext context) => [PopupMenuItem(value: 0, child: Text("Log Out"))],
             onSelected: (value) async {
               switch (value) {
                 case 0:
@@ -76,79 +67,85 @@ class _HomePageState extends State<HomePage> {
             FutureBuilder(
               future: future,
               builder: (BuildContext context, AsyncSnapshot<List<Credential>> snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return Expanded(
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 80),
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        if (snapshot.data.length == 0) {
-                          //TODO: Test no data situation. Bus Stop
-                          return Center(child: Text("No Data"));
-                        } else {
-                          return Dismissible(
-                            key: UniqueKey(),
-                            direction: DismissDirection.endToStart,
-                            background: Container(
-                              color: Colors.red,
-                              alignment: AlignmentDirectional.centerEnd,
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 28, 0),
-                                child: Icon(
-                                  Icons.delete_sweep,
-                                  color: Colors.white,
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                  case ConnectionState.waiting:
+                    return Center(child: CircularProgressIndicator());
+                  default:
+                    if (snapshot.hasError) {
+                      return Text(snapshot.error);
+                    } else if (snapshot.data.length == 0 || snapshot.data == null) {
+                      return Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.inbox, size: 50, color: Colors.black26),
+                            Text("There is no data", style: Theme
+                                .of(context)
+                                .textTheme
+                                .title),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Expanded(
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 80),
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return Dismissible(
+                              key: UniqueKey(),
+                              direction: DismissDirection.endToStart,
+                              background: Container(
+                                color: Colors.red,
+                                alignment: AlignmentDirectional.centerEnd,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 28, 0),
+                                  child: Icon(Icons.delete_sweep, color: Colors.white),
                                 ),
                               ),
-                            ),
-                            onDismissed: (direction) async {
-                              await Antenna().deleteCredential(snapshot.data[index].id);
-                            },
-                            //TODO: Confirm dismiss or Toast bar Undo
-                            child: Card(
-                              child: ListTile(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(snapshot.data[index])));
-                                },
-                                title: Text(snapshot.data[index].url),
-                                subtitle: Text(snapshot.data[index].username),
-                                trailing: PopupMenuButton(
-                                  icon: Icon(Icons.more_vert),
-                                  itemBuilder: (BuildContext context) => [
-                                    PopupMenuItem(
-                                      value: 0,
-                                      child: Text("Copy Username"),
-                                    ),
-                                    PopupMenuItem(
-                                      value: 1,
-                                      child: Text("Copy Password"),
-                                    )
-                                  ],
-                                  onSelected: (value) {
-                                    switch (value) {
-                                      case 0:
-                                        {
-                                          Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
-                                          print("Username copied to Clipboard: " + snapshot.data[index].username);
-                                          break;
-                                        }
-                                      case 1:
-                                        {
-                                          Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
-                                          print("Password copied to Clipboard: " + snapshot.data[index].password);
-                                          break;
-                                        }
-                                    }
+                              onDismissed: (direction) async {
+                                await Antenna().deleteCredential(snapshot.data[index].id);
+                              },
+                              //TODO: Confirm dismiss or Toast bar Undo
+                              child: Card(
+                                child: ListTile(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(snapshot.data[index])));
                                   },
+                                  title: Text(snapshot.data[index].url),
+                                  subtitle: Text(snapshot.data[index].username),
+                                  trailing: PopupMenuButton(
+                                    icon: Icon(Icons.more_vert),
+                                    itemBuilder: (BuildContext context) =>
+                                    [
+                                      PopupMenuItem(value: 0, child: Text("Copy Username")),
+                                      PopupMenuItem(value: 1, child: Text("Copy Password"))
+                                    ],
+                                    onSelected: (value) {
+                                      switch (value) {
+                                        case 0:
+                                          {
+                                            Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
+                                            print("Username copied to Clipboard: " + snapshot.data[index].username);
+                                            break;
+                                          }
+                                        case 1:
+                                          {
+                                            Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
+                                            print("Password copied to Clipboard: " + snapshot.data[index].password);
+                                            break;
+                                          }
+                                      }
+                                    },
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
+                            );
+                          },
+                        ),
+                      );
+                    }
                 }
               },
             ),
