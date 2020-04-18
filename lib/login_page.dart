@@ -118,8 +118,27 @@ class _LoginPageState extends State<LoginPage> {
       if (success) {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomePage()));
       } else {
-        //TODO: Warn User about his inputs. They are wrong!
+        dialog();
       }
     });
+  }
+
+  void dialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Something went wrong"),
+            content: Text("Please check your username, password or base URL again"),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              )
+            ],
+          );
+        });
   }
 }
