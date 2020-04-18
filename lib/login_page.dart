@@ -1,6 +1,7 @@
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,7 +9,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController baseUrlController = TextEditingController();
+  String baseURL, username, password;
+
   Widget textField({
+    TextEditingController controller,
     bool autoFocus,
     bool obscure,
     String label,
@@ -18,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     int i,
   }) {
     return TextField(
+      controller: controller,
       autocorrect: false,
       autofocus: autoFocus,
       obscureText: obscure,
@@ -50,7 +56,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  String baseURL, username, password;
+  getBaseURL() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    baseURL = preferences.getString("server");
+    setState(() {
+      baseUrlController.text = baseURL;
+    });
+  }
+
+  @override
+  void initState() {
+    getBaseURL();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +77,8 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: EdgeInsets.all(20),
           children: <Widget>[
-            //TODO: Save user base url. It's gonna be boring typing again and again
             textField(
+              controller: baseUrlController,
               autoFocus: false,
               obscure: false,
               label: "Base URL",

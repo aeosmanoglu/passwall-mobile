@@ -12,7 +12,7 @@ class Antenna {
   Future<bool> gateKeeper(String token) async {
     print("Gate Keeper patrolling...");
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    String server = preferences.getString("server") ?? "localhost:3625";
+    String server = preferences.getString("server");
     String url = "http://$server/auth/check";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response;
