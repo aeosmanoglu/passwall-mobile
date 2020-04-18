@@ -28,7 +28,7 @@ Do not forget the  `flutter pub get`
 	- [x] Generate password
 	- [ ] ~~Order the list~~
 	- [x] Keeping logs
-- [ ] v0.3.0 Trading
+- [ ] v0.3.0 Sharing
 	- [ ] Export credential
 	- [ ] Import credential
 - [ ] v0.4.0 Powering Up
@@ -56,11 +56,11 @@ Do not forget the  `flutter pub get`
   <tr>
     <td><img src="screenshots/create.png" alt="Create Dialog"/></td>
     <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
-    <td></td>
+    <td><img src="screenshots/sharing.png" alt="Sharing Action"/></td>
   <tr>
     <td>Create Dialog:point_up:</td>
     <td>Detail Screen:point_up:</td>
-    <td></td>
+    <td>Sharing Action:point_up:</td>
   </tr>
 </table>
 

@@ -4,6 +4,7 @@ import 'package:Passwall/login_page.dart';
 import 'package:Passwall/objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -115,29 +116,43 @@ class _HomePageState extends State<HomePage> {
                                   },
                                   title: Text(snapshot.data[index].url),
                                   subtitle: Text(snapshot.data[index].username),
-                                  trailing: PopupMenuButton(
-                                    icon: Icon(Icons.more_vert),
-                                    itemBuilder: (BuildContext context) =>
-                                    [
-                                      PopupMenuItem(value: 0, child: Text("Copy Username")),
-                                      PopupMenuItem(value: 1, child: Text("Copy Password"))
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      IconButton(
+                                          icon: Icon(Icons.share),
+                                          onPressed: () {
+                                            Credential i = snapshot.data[index];
+                                            Share.share(
+                                              "URL: " + i.url + ", Username: " + i.username + ", Password: " + i.password,
+                                              subject: "Sensetive data from PassWall",
+                                            );
+                                          }),
+                                      PopupMenuButton(
+                                        icon: Icon(Icons.more_vert),
+                                        itemBuilder: (BuildContext context) =>
+                                        [
+                                          PopupMenuItem(value: 0, child: Text("Copy Username")),
+                                          PopupMenuItem(value: 1, child: Text("Copy Password"))
+                                        ],
+                                        onSelected: (value) {
+                                          switch (value) {
+                                            case 0:
+                                              {
+                                                Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
+                                                print("Username copied to Clipboard: " + snapshot.data[index].username);
+                                                break;
+                                              }
+                                            case 1:
+                                              {
+                                                Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
+                                                print("Password copied to Clipboard: " + snapshot.data[index].password);
+                                                break;
+                                              }
+                                          }
+                                        },
+                                      ),
                                     ],
-                                    onSelected: (value) {
-                                      switch (value) {
-                                        case 0:
-                                          {
-                                            Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
-                                            print("Username copied to Clipboard: " + snapshot.data[index].username);
-                                            break;
-                                          }
-                                        case 1:
-                                          {
-                                            Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
-                                            print("Password copied to Clipboard: " + snapshot.data[index].password);
-                                            break;
-                                          }
-                                      }
-                                    },
                                   ),
                                 ),
                               ),
