@@ -12,7 +12,7 @@ Do not forget the  `flutter pub get`
 
 ## Mile Stones
 
-- [x] v0.1.0 Waking-Up
+- [x] v0.1.0 Waking Up
 	- [x] Authentication
 		- [x] Login
 		- [x] Check token. If valid, redirect to main screen
@@ -20,13 +20,14 @@ Do not forget the  `flutter pub get`
 	- [x] Get all credentials *(Url or Title, Username and Password)* and list them on the main screen
 	- [x] Search in credentials
 	- [x] Copy password
-- [ ] v0.2.0 Talenting
-	- [ ] Pull to refresh in main screen
-	- [ ] Swipe to delete credential
-	- [ ] Update credential
-	- [ ] Create new credential
-	- [ ] Generate password
-	- [ ] Order the list
+- [x] v0.2.0 Growing Up
+	- [x] Pull to refresh in main screen
+	- [x] Swipe to delete credential
+	- [x] Update credential
+	- [x] Create new credential
+	- [x] Generate password
+	- [ ] ~~Order the list~~
+	- [x] Keeping logs
 - [ ] v0.3.0 Trading
 	- [ ] Export credential
 	- [ ] Import credential
@@ -42,14 +43,24 @@ Do not forget the  `flutter pub get`
 ## Some Screen Shots
 <table>
   <tr>
-    <th><img src="screenshots/login.png" alt="Login Screen" width="250"/></th>
-    <th><img src="screenshots/main.png" alt="Main Screen" width="250"/></th>
-    <th><img src="screenshots/copy.png" alt="Copy Actions" width="250"/></th>
+    <td><img src="screenshots/login.png" alt="Login Screen"/></td>
+    <td><img src="screenshots/main.png" alt="Main Screen"/></td>
+    <td><img src="screenshots/copy.png" alt="Copy Actions"/></td>
   </tr>
   <tr>
-    <td>Login Screen</td>
-    <td>Main Screen</td>
-    <td>Copy Actions</td>
+    <td>Login Screen:point_up:</td>
+    <td>Main Screen:point_up:</td>
+    <td>Copy Actions:point_up:</td>
+    
+  </tr>
+  <tr>
+    <td><img src="screenshots/create.png" alt="Create Dialog"/></td>
+    <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
+    <td></td>
+  <tr>
+    <td>Create Dialog:point_up:</td>
+    <td>Detail Screen:point_up:</td>
+    <td></td>
   </tr>
 </table>
 
