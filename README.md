@@ -56,7 +56,7 @@ Do not forget the  `flutter pub get`
   <tr>
     <td><img src="screenshots/create.png" alt="Create Dialog"/></td>
     <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
-    <td><img src="screenshots/sharing.png" alt="Sharing Action"/></td>
+    <td><img src="screenshots/share.png" alt="Sharing Action"/></td>
   <tr>
     <td>Create Dialog:point_up:</td>
     <td>Detail Screen:point_up:</td>
