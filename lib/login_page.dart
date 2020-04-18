@@ -18,7 +18,6 @@ class _LoginPageState extends State<LoginPage> {
     bool obscure,
     String label,
     String hint,
-    String prefixText,
     Icon icon,
     int i,
   }) {
@@ -50,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
         border: OutlineInputBorder(),
         labelText: label,
         hintText: hint,
-        prefixText: prefixText,
         prefixIcon: icon,
       ),
     );
@@ -82,8 +80,7 @@ class _LoginPageState extends State<LoginPage> {
               autoFocus: false,
               obscure: false,
               label: "Base URL",
-              hint: "my.server.com:3625",
-              prefixText: "http://",
+              hint: "https://my.server.com:3625",
               icon: Icon(Icons.language),
               i: 0,
             ),
