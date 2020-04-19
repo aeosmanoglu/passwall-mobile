@@ -116,24 +116,59 @@ class _HomePageState extends State<HomePage> {
                                   },
                                   title: Text(snapshot.data[index].url),
                                   subtitle: Text(snapshot.data[index].username),
+                                  leading: Stack(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Text(snapshot.data[index].url[0].toUpperCase(), style: Theme
+                                            .of(context)
+                                            .textTheme
+                                            .display1,),
+                                        width: 40,
+                                        height: 40,
+                                        alignment: Alignment(0, 0),
+                                      ),
+                                      ClipOval(
+                                        child: Image.network(
+                                          "http://logo.clearbit.com/${snapshot.data[index].url}?size=80",
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      IconButton(
-                                          icon: Icon(Icons.share),
-                                          onPressed: () {
-                                            Credential i = snapshot.data[index];
-                                            Share.share(
-                                              "URL: " + i.url + ", Username: " + i.username + ", Password: " + i.password,
-                                              subject: "Sensetive data from PassWall",
-                                            );
-                                          }),
+                                      //IconButton(icon: Icon(Icons.person), onPressed: () {
+                                      //  Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
+                                      //  print("Username copied to Clipboard: " + snapshot.data[index].username);
+                                      //  Scaffold.of(context).showSnackBar(SnackBar(content: Text("Username copied to clipboard.")));
+                                      //}),
+                                      //IconButton(
+                                      //    icon: Icon(Icons.content_copy),
+                                      //    onPressed: () {
+                                      //      Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
+                                      //      print("Password copied to Clipboard: " + snapshot.data[index].password);
+                                      //      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Password copied to clipboard.")));
+                                      //    }),
+                                      //IconButton(
+                                      //    icon: Icon(Icons.share),
+                                      //    onPressed: () {
+                                      //      Credential i = snapshot.data[index];
+                                      //      Share.share(
+                                      //        "URL: ${i.url}, Username: ${i.username}, Password: ${i.password}",
+                                      //        subject: "Sensetive data from PassWall",
+                                      //      );
+                                      //    }),
+                                      // Action menu suspended for now
                                       PopupMenuButton(
                                         icon: Icon(Icons.more_vert),
                                         itemBuilder: (BuildContext context) =>
                                         [
                                           PopupMenuItem(value: 0, child: Text("Copy Username")),
-                                          PopupMenuItem(value: 1, child: Text("Copy Password"))
+                                          PopupMenuItem(value: 1, child: Text("Copy Password")),
+                                          PopupMenuItem(value: 2, child: Text("Share")),
                                         ],
                                         onSelected: (value) {
                                           switch (value) {
@@ -141,13 +176,23 @@ class _HomePageState extends State<HomePage> {
                                               {
                                                 Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
                                                 print("Username copied to Clipboard: " + snapshot.data[index].username);
+                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Username copied to clipboard.")));
                                                 break;
                                               }
                                             case 1:
                                               {
                                                 Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
                                                 print("Password copied to Clipboard: " + snapshot.data[index].password);
+                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Password copied to clipboard.")));
                                                 break;
+                                              }
+                                            case 2:
+                                              {
+                                                Credential i = snapshot.data[index];
+                                                Share.share(
+                                                  "URL: ${i.url}, Username: ${i.username}, Password: ${i.password}",
+                                                  subject: "Sensetive data from PassWall",
+                                                );
                                               }
                                           }
                                         },
@@ -220,6 +265,9 @@ class _HomePageState extends State<HomePage> {
             FlatButton(
               child: Text("SAVE"),
               onPressed: () async {
+                if (title == null || title == "") {
+                  title = "NoTitle";
+                }
                 await Antenna().create(title: title, username: username, password: password);
                 Navigator.of(context).pop();
                 setState(() {});
