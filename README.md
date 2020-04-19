@@ -45,12 +45,12 @@ Do not forget the  `flutter pub get`
   <tr>
     <td><img src="screenshots/login.png" alt="Login Screen"/></td>
     <td><img src="screenshots/main.png" alt="Main Screen"/></td>
-    <td><img src="screenshots/copy.png" alt="Copy Actions"/></td>
+    <td><img src="screenshots/actions.png" alt="Tile Actions"/></td>
   </tr>
   <tr>
     <td>Login Screen:point_up:</td>
     <td>Main Screen:point_up:</td>
-    <td>Copy Actions:point_up:</td>
+    <td>List Tile Actions:point_up:</td>
     
   </tr>
   <tr>
