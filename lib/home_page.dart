@@ -202,8 +202,8 @@ class _HomePageState extends State<HomePage> {
                                               {
                                                 Credential i = snapshot.data[index];
                                                 Share.text(
-                                                  "Sensetive data from PassWall",
-                                                  "Sensetive data from PassWall\nURL: ${i.url}\nUsername: ${i.username}\nPassword: ${i.password}",
+                                                  "Sensitive data from PassWall",
+                                                  "Sensitive data from PassWall\nURL: ${i.url}\nUsername: ${i.username}\nPassword: ${i.password}",
                                                   "text/plain",
                                                 );
                                               }

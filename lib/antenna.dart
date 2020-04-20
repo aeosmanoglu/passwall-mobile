@@ -153,8 +153,10 @@ class Antenna {
     file.writeAsStringSync(response.body);
     print("Done. File is closed. Exporting...");
     List<int> bytes = file.readAsBytesSync();
-    String now = DateTime.now().toString();
-    List<String> title = now.split(" ");
-    Share.file("Sensetive data from PassWall", "PassWall-Export-${title[0]}.csv", bytes, "text/csv");
+    String now = DateTime
+        .now()
+        .millisecondsSinceEpoch
+        .toString();
+    Share.file("Sensitive data from PassWall", "PassWall-Export-$now.csv", bytes, "text/csv");
   }
 }
