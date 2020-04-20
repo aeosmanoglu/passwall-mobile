@@ -1,5 +1,7 @@
 import 'package:Passwall/objects.dart';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -124,5 +126,35 @@ class Antenna {
     String body = jsonEncode({"URL": title, "Username": username, "Password": password});
     Response response = await put(url, headers: headers, body: body);
     response.statusCode == 200 ? print("updated") : print("Samething went wrong!");
+  }
+
+  /// Returns the path of documents directory
+  Future<String> get pathFinder async {
+    final dir = await getApplicationSupportDirectory();
+    return dir.path;
+  }
+
+  /// Opens the file
+  Future<File> secretarial({String file = "export.csv"}) async {
+    final path = await pathFinder;
+    return File("$path/$file");
+  }
+
+  export() async {
+    print("Exporting...");
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String server = preferences.getString("server");
+    String token = preferences.getString("token");
+    String url = "$server/logins/export";
+    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
+    Response response = await post(url, headers: headers);
+    final file = await secretarial();
+    print("Writting data to file...");
+    file.writeAsStringSync(response.body);
+    print("Done. File is closed. Exporting...");
+    List<int> bytes = file.readAsBytesSync();
+    String now = DateTime.now().toString();
+    List<String> title = now.split(" ");
+    Share.file("Sensetive data from PassWall", "PassWall-Export-${title[0]}.csv", bytes, "text/csv");
   }
 }

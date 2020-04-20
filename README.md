@@ -29,7 +29,7 @@ Do not forget the  `flutter pub get`
 	- [ ] ~~Order the list~~
 	- [x] Keeping logs
 - [ ] v0.3.0 Sharing
-	- [ ] Export credential
+	- [x] Export credential
 	- [ ] Import credential
 - [ ] v0.4.0 Powering Up
 	- [ ] Biometric Auth

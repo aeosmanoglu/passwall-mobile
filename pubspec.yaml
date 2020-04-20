@@ -10,7 +10,8 @@ dependencies:
     sdk: flutter
   http:
   shared_preferences:
-  share:
+  esys_flutter_share:
+  path_provider:
 
 dev_dependencies:
   flutter_test:

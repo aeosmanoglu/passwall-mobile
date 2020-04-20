@@ -4,7 +4,7 @@ import 'package:Passwall/login_page.dart';
 import 'package:Passwall/objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:share/share.dart';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,10 +37,19 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
-            itemBuilder: (BuildContext context) => [PopupMenuItem(value: 0, child: Text("Log Out"))],
+            itemBuilder: (BuildContext context) =>
+            [
+              PopupMenuItem(value: 0, child: Text("Export All")),
+              PopupMenuItem(value: 1, child: Text("Log Out")),
+            ],
             onSelected: (value) async {
               switch (value) {
                 case 0:
+                  {
+                    Antenna().export();
+                    break;
+                  }
+                case 1:
                   {
                     print("Loging out");
                     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -119,10 +128,13 @@ class _HomePageState extends State<HomePage> {
                                   leading: Stack(
                                     children: <Widget>[
                                       Container(
-                                        child: Text(snapshot.data[index].url[0].toUpperCase(), style: Theme
-                                            .of(context)
-                                            .textTheme
-                                            .display1,),
+                                        child: Text(
+                                          snapshot.data[index].url[0].toUpperCase(),
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .display1,
+                                        ),
                                         width: 40,
                                         height: 40,
                                         alignment: Alignment(0, 0),
@@ -189,9 +201,10 @@ class _HomePageState extends State<HomePage> {
                                             case 2:
                                               {
                                                 Credential i = snapshot.data[index];
-                                                Share.share(
-                                                  "URL: ${i.url}, Username: ${i.username}, Password: ${i.password}",
-                                                  subject: "Sensetive data from PassWall",
+                                                Share.text(
+                                                  "Sensetive data from PassWall",
+                                                  "Sensetive data from PassWall\nURL: ${i.url}\nUsername: ${i.username}\nPassword: ${i.password}",
+                                                  "text/plain",
                                                 );
                                               }
                                           }
