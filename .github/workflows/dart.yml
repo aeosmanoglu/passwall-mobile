@@ -20,7 +20,7 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.x'
+          flutter-version: '1.12.13'
       - run: dart --version
       - run: flutter --version
       - run: flutter doctor -v
