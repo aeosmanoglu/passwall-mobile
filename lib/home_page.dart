@@ -26,6 +26,23 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+
+  Future<bool> _showConfirmationDialog(context) {
+    return showDialog(context: context, barrierDismissible: false, builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Are you sure to delete this credential?'),
+        actions: <Widget>[
+          FlatButton.icon(onPressed: () {
+            Navigator.pop(context, true);
+          }, icon: Icon(Icons.check), label: Text('Yes')),
+          FlatButton.icon(onPressed: () {
+            Navigator.pop(context, false);
+          }, icon: Icon(Icons.close), label: Text('No')),
+        ],
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     future = searchQuery == "" ? Antenna().getCredentials() : Antenna().search(searchQuery);
@@ -132,7 +149,15 @@ class _HomePageState extends State<HomePage> {
                               onDismissed: (direction) async {
                                 await Antenna().deleteCredential(snapshot.data[index].id);
                               },
-                              //TODO: Confirm dismiss or Toast bar Undo
+                              confirmDismiss: (DismissDirection direction) async {
+                                switch (direction) {
+                                  case DismissDirection.endToStart:
+                                    return await _showConfirmationDialog(context);
+                                    break;
+                                  default:
+                                }
+                                return false;
+                              },
                               child: Card(
                                 child: ListTile(
                                   onTap: () {
