@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
                     file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['csv']);
                     await Antenna().import(file);
                     setState(() {});
+                    //TODO: Add a snackbar
                     break;
                   }
                 case 1:
@@ -310,5 +311,4 @@ class _HomePageState extends State<HomePage> {
     await Future.delayed(Duration(milliseconds: 400));
     setState(() {});
   }
-
 }

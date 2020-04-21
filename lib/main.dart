@@ -24,7 +24,6 @@ class Gate extends StatefulWidget {
 class _GateState extends State<Gate> {
   @override
   Widget build(BuildContext context) {
-
     // Check the user authorized or not
     getToken().then((token) => router(token));
 

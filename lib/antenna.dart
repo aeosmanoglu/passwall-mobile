@@ -174,15 +174,15 @@ class Antenna {
     multipartRequest.fields["Username"] = "Username";
     multipartRequest.fields["Password"] = "Password";
     multipartRequest.files.add(MultipartFile.fromString(
-        "File",
-        file.readAsStringSync(),
-        filename: file.path
-            .split("/")
-            .last,
-        contentType: MediaType("text", "csv")
+      "File",
+      file.readAsStringSync(),
+      filename: file.path
+          .split("/")
+          .last,
+      contentType: MediaType("text", "csv"),
     ));
     multipartRequest.headers.addAll(headers);
     StreamedResponse response = await multipartRequest.send();
-    if (response.statusCode == 200) print('Uploaded!');
+    if (response.statusCode == 200) print('Imported!');
   }
 }
