@@ -14,6 +14,7 @@ dependencies:
   path_provider:
   file_picker: # TODO: https://github.com/miguelpruivo/flutter_file_picker/wiki/Setup#--desktop-go-flutter
   link:
+  flutter_launcher_name:
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +26,6 @@ flutter:
     - family: mono
       fonts:
         - asset: fonts/RobotoMono-Regular.ttf
+
+flutter_launcher_name:
+  name: "PassWall"
