@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               PopupMenuItem(value: 0, child: Text("Import")),
               PopupMenuItem(value: 1, child: Text("Export")),
               PopupMenuItem(value: 2, child: Text("About")),
-              PopupMenuItem(value: 3, child: Text("Log Out")),
+              PopupMenuItem(value: 3, child: Text("Log Out", style: TextStyle(color: Colors.red))),
             ],
             onSelected: (value) async {
               switch (value) {
