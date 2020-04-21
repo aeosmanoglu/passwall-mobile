@@ -2,6 +2,10 @@
 
 PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
+![Flutter CI](https://github.com/pass-wall/passwall-mobile/workflows/Flutter%20CI/badge.svg?branch=master)
+[![Made-with-Flutter](https://img.shields.io/badge/Made%20with-Flutter-5fc9f8.svg)](https://flutter.dev/)
+[![Made-with-Dart](https://img.shields.io/badge/Made%20with-Dart-13589c.svg)](https://dart.dev/)
+
 ## Getting Started
 
 1. First, clone the [server app](https://github.com/pass-wall/passwall-server) and buld it.
