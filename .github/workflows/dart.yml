@@ -25,6 +25,5 @@ jobs:
       - run: flutter --version
       - run: flutter doctor -v
       - run: flutter pub get
-      - run: flutter pub get run flutter_launcher_name:main
       - run: flutter test
       #- run: flutter build apk
