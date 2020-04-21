@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:Passwall/about.dart';
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/detail_page.dart';
 import 'package:Passwall/login_page.dart';
@@ -39,7 +40,8 @@ class _HomePageState extends State<HomePage> {
             [
               PopupMenuItem(value: 0, child: Text("Import")),
               PopupMenuItem(value: 1, child: Text("Export")),
-              PopupMenuItem(value: 2, child: Text("Log Out")),
+              PopupMenuItem(value: 2, child: Text("About")),
+              PopupMenuItem(value: 3, child: Text("Log Out")),
             ],
             onSelected: (value) async {
               switch (value) {
@@ -57,6 +59,11 @@ class _HomePageState extends State<HomePage> {
                     break;
                   }
                 case 2:
+                  {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => new AboutPage()));
+                    break;
+                  }
+                case 3:
                   {
                     print("Loging out");
                     SharedPreferences preferences = await SharedPreferences.getInstance();

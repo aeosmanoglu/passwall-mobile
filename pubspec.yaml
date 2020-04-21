@@ -13,6 +13,7 @@ dependencies:
   esys_flutter_share:
   path_provider:
   file_picker: # TODO: https://github.com/miguelpruivo/flutter_file_picker/wiki/Setup#--desktop-go-flutter
+  link:
 
 dev_dependencies:
   flutter_test:
