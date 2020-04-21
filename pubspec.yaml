@@ -15,6 +15,7 @@ dependencies:
   file_picker: # TODO: https://github.com/miguelpruivo/flutter_file_picker/wiki/Setup#--desktop-go-flutter
   link:
   flutter_launcher_name:
+  flutter_launcher_icons:
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +30,10 @@ flutter:
 
 flutter_launcher_name:
   name: "PassWall"
+
+flutter_icons:
+  image_path: "assets/icons/icon.png"
+  android: true
+  ios: true
+  adaptive_icon_background: "assets/icons/background.png"
+  adaptive_icon_foreground: "assets/icons/foreground.png"
