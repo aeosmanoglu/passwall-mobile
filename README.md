@@ -24,6 +24,8 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 1. Don't mess with the user interface. The design guide has not been released yet.
 
+> When you want to connect to the localhost server with the Android emulator, you connect to the emulator's localhost server and you get an error. Instead, try connecting to the [Heroku Demo server](https://passwall-demo.herokuapp.com).
+
 ## Mile Stones
 
 - [x] v0.1.0 Waking Up
@@ -40,43 +42,77 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 	- [x] Update credential
 	- [x] Create new credential
 	- [x] Generate password
-	- [ ] ~~Order the list~~
+	- [ ] ~~Order the list~~ *postponed*
 	- [x] Keeping logs
-- [ ] v0.3.0 Trading
-	- [ ] Export credential
-	- [ ] Import credential
-- [ ] v0.4.0 Powering Up
-	- [ ] Biometric Auth
-	- [ ] iOS Blur Screen when the app is in the background
-	- [ ] Dark Mode
-	- [ ] Localization
+- [x] v0.3.0 Sharing
+	- [x] Export credential and share
+	- [x] Import credential
+	    - [x] With file pick
+	    - [ ] ~~Share Intent~~ *postponed*
 - [ ] v0.4.0 Polishing
 	- [ ] Logo
 	- [ ] UI customise
-		- [ ] Re-design for large screens
+	- [x] About page  
+	- [ ] Re-design for large screens
+- [ ] v0.5.0 Securing
+	- [ ] Biometric Auth
+	- [ ] iOS Blur Screen when the app is in the background
+- [ ] v0.6.0 Powering Up
+	- [ ] Dark Mode
+	- [ ] Localization
 - [ ] V1.0.0 Compile’n release
+  - [ ] AndroidOS
+  - [ ] MacOS
+  - [ ] Windows
+  - [ ] Browser
+  - [ ] ~~iOS~~
 
 ## Some Screen Shots
+
+### Screens
+
 <table>
-  <tr>
-    <td><img src="screenshots/login.png" alt="Login Screen"/></td>
-    <td><img src="screenshots/main.png" alt="Main Screen"/></td>
-    <td><img src="screenshots/copy.png" alt="Copy Actions"/></td>
+    <tr>
+        <td><img src="screenshots/login.png" alt="Login Screen"/></td>
+        <td><img src="screenshots/main.png" alt="Main Screen"/></td>
+        <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
+        <td><img src="screenshots/about.png" alt="About Screen"/></td>
+    </tr>
+    <tr>
+        <td>Login Screen:point_up:</td>
+        <td>Main Screen:point_up:</td>
+        <td>Detail Screen:point_up:</td>
+        <td>About Screen:point_up:</td>
+    </tr>
+</table>
+
+### Actions
+
+<table>
+    <tr>
+        <td><img src="screenshots/mainAction.png" alt="Main Action"/></td>
+        <td><img src="screenshots/tileAction.png" alt="Tile Action"/></td>
+        <td><img src="screenshots/createNew.png" alt="Create New"/></td>
+    </tr>
+    <tr>
+        <td>Main Action:point_up:</td>
+        <td>Tile Action:point_up:</td>
+        <td>Create New:point_up:</td>
+    </tr>
+</table>
+
+### Share
+
+<table>
+    <tr>
+        <td><img src="screenshots/export.png" alt="Export"/></td>
+        <td><img src="screenshots/import.png" alt="Import"/></td>
+        <td><img src="screenshots/share.png" alt="Share"/></td>
   </tr>
   <tr>
-    <td>Login Screen:point_up:</td>
-    <td>Main Screen:point_up:</td>
-    <td>Copy Actions:point_up:</td>
-    
-  </tr>
-  <tr>
-    <td><img src="screenshots/create.png" alt="Create Dialog"/></td>
-    <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
-    <td></td>
-  <tr>
-    <td>Create Dialog:point_up:</td>
-    <td>Detail Screen:point_up:</td>
-    <td></td>
+        <td>Export:point_up:</td>
+        <td>Import:point_up:</td>
+        <td>Share:point_up:</td>
   </tr>
 </table>
 

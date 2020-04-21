@@ -1,9 +1,14 @@
+import 'dart:io';
+
+import 'package:Passwall/about.dart';
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/detail_page.dart';
 import 'package:Passwall/login_page.dart';
 import 'package:Passwall/objects.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,11 +26,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  Future<void> refresh() async {
-    await Future.delayed(Duration(milliseconds: 400));
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     future = searchQuery == "" ? Antenna().getCredentials() : Antenna().search(searchQuery);
@@ -36,10 +36,35 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
-            itemBuilder: (BuildContext context) => [PopupMenuItem(value: 0, child: Text("Log Out"))],
+            itemBuilder: (BuildContext context) =>
+            [
+              PopupMenuItem(value: 0, child: Text("Import")),
+              PopupMenuItem(value: 1, child: Text("Export")),
+              PopupMenuItem(value: 2, child: Text("About")),
+              PopupMenuItem(value: 3, child: Text("Log Out", style: TextStyle(color: Colors.red))),
+            ],
             onSelected: (value) async {
               switch (value) {
                 case 0:
+                  {
+                    File file;
+                    file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['csv']);
+                    await Antenna().import(file);
+                    setState(() {});
+                    //TODO: Add a snackbar
+                    break;
+                  }
+                case 1:
+                  {
+                    Antenna().export();
+                    break;
+                  }
+                case 2:
+                  {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => new AboutPage()));
+                    break;
+                  }
+                case 3:
                   {
                     print("Loging out");
                     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -115,29 +140,92 @@ class _HomePageState extends State<HomePage> {
                                   },
                                   title: Text(snapshot.data[index].url),
                                   subtitle: Text(snapshot.data[index].username),
-                                  trailing: PopupMenuButton(
-                                    icon: Icon(Icons.more_vert),
-                                    itemBuilder: (BuildContext context) =>
-                                    [
-                                      PopupMenuItem(value: 0, child: Text("Copy Username")),
-                                      PopupMenuItem(value: 1, child: Text("Copy Password"))
+                                  leading: Stack(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Text(
+                                          snapshot.data[index].url[0].toUpperCase(),
+                                          style: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .display1,
+                                        ),
+                                        width: 40,
+                                        height: 40,
+                                        alignment: Alignment(0, 0),
+                                      ),
+                                      ClipOval(
+                                        child: Image.network(
+                                          "http://logo.clearbit.com/${snapshot.data[index].url}?size=80",
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ],
-                                    onSelected: (value) {
-                                      switch (value) {
-                                        case 0:
-                                          {
-                                            Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
-                                            print("Username copied to Clipboard: " + snapshot.data[index].username);
-                                            break;
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      //IconButton(icon: Icon(Icons.person), onPressed: () {
+                                      //  Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
+                                      //  print("Username copied to Clipboard: " + snapshot.data[index].username);
+                                      //  Scaffold.of(context).showSnackBar(SnackBar(content: Text("Username copied to clipboard.")));
+                                      //}),
+                                      //IconButton(
+                                      //    icon: Icon(Icons.content_copy),
+                                      //    onPressed: () {
+                                      //      Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
+                                      //      print("Password copied to Clipboard: " + snapshot.data[index].password);
+                                      //      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Password copied to clipboard.")));
+                                      //    }),
+                                      //IconButton(
+                                      //    icon: Icon(Icons.share),
+                                      //    onPressed: () {
+                                      //      Credential i = snapshot.data[index];
+                                      //      Share.share(
+                                      //        "URL: ${i.url}, Username: ${i.username}, Password: ${i.password}",
+                                      //        subject: "Sensetive data from PassWall",
+                                      //      );
+                                      //    }),
+                                      // Action menu suspended for now
+                                      PopupMenuButton(
+                                        icon: Icon(Icons.more_vert),
+                                        itemBuilder: (BuildContext context) =>
+                                        [
+                                          PopupMenuItem(value: 0, child: Text("Copy Username")),
+                                          PopupMenuItem(value: 1, child: Text("Copy Password")),
+                                          PopupMenuItem(value: 2, child: Text("Share")),
+                                        ],
+                                        onSelected: (value) {
+                                          switch (value) {
+                                            case 0:
+                                              {
+                                                Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
+                                                print("Username copied to Clipboard: " + snapshot.data[index].username);
+                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Username copied to clipboard.")));
+                                                break;
+                                              }
+                                            case 1:
+                                              {
+                                                Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
+                                                print("Password copied to Clipboard: " + snapshot.data[index].password);
+                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Password copied to clipboard.")));
+                                                break;
+                                              }
+                                            case 2:
+                                              {
+                                                Credential i = snapshot.data[index];
+                                                Share.text(
+                                                  "Sensitive data from PassWall",
+                                                  "Sensitive data from PassWall\nURL: ${i.url}\nUsername: ${i.username}\nPassword: ${i.password}",
+                                                  "text/plain",
+                                                );
+                                              }
                                           }
-                                        case 1:
-                                          {
-                                            Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
-                                            print("Password copied to Clipboard: " + snapshot.data[index].password);
-                                            break;
-                                          }
-                                      }
-                                    },
+                                        },
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -154,12 +242,12 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: creator,
+        onPressed: createNew,
       ),
     );
   }
 
-  void creator() {
+  void createNew() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -205,6 +293,9 @@ class _HomePageState extends State<HomePage> {
             FlatButton(
               child: Text("SAVE"),
               onPressed: () async {
+                if (title == null || title == "") {
+                  title = "NoTitle";
+                }
                 await Antenna().create(title: title, username: username, password: password);
                 Navigator.of(context).pop();
                 setState(() {});
@@ -214,5 +305,10 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+
+  Future<void> refresh() async {
+    await Future.delayed(Duration(milliseconds: 400));
+    setState(() {});
   }
 }

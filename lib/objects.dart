@@ -22,4 +22,3 @@ class Credential {
     return data;
   }
 }
-
