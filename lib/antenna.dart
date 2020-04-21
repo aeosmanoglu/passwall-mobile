@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http_parser/http_parser.dart';
 
 class Antenna {
   /// This is the main function that the access token still valid.
@@ -158,5 +159,30 @@ class Antenna {
         .millisecondsSinceEpoch
         .toString();
     Share.file("Sensitive data from PassWall", "PassWall-Export-$now.csv", bytes, "text/csv");
+  }
+
+  import(File file) async {
+    print("Importing...");
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String server = preferences.getString("server");
+    String token = preferences.getString("token");
+    String url = "$server/logins/import";
+    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "multipart/form-data"};
+    Uri uri = Uri.parse(url);
+    MultipartRequest multipartRequest = MultipartRequest("POST", uri);
+    multipartRequest.fields["URL"] = "URL";
+    multipartRequest.fields["Username"] = "Username";
+    multipartRequest.fields["Password"] = "Password";
+    multipartRequest.files.add(MultipartFile.fromString(
+        "File",
+        file.readAsStringSync(),
+        filename: file.path
+            .split("/")
+            .last,
+        contentType: MediaType("text", "csv")
+    ));
+    multipartRequest.headers.addAll(headers);
+    StreamedResponse response = await multipartRequest.send();
+    if (response.statusCode == 200) print('Uploaded!');
   }
 }

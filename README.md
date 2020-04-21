@@ -28,19 +28,23 @@ Do not forget the  `flutter pub get`
 	- [x] Generate password
 	- [ ] ~~Order the list~~
 	- [x] Keeping logs
-- [ ] v0.3.0 Sharing
-	- [x] Export credential
-	- [ ] Import credential
+- [x] v0.3.0 Sharing
+	- [x] Export credential and share
+	- [x] Import credential
+	    - [x] With file pick
+	    - [ ] Share Intent
 - [ ] v0.4.0 Powering Up
 	- [ ] Biometric Auth
 	- [ ] Dark Mode
 	- [ ] Localization
 - [ ] v0.4.0 Polishing
 	- [ ] Logo
-	- [ ] UI customise  
+	- [ ] UI customise
+	- [ ] About page  
 - [ ] V1.0.0 Compile’n release
 
 ## Some Screen Shots
+[comment]: <> (TODO: Refresh screenshots)
 <table>
   <tr>
     <td><img src="screenshots/login.png" alt="Login Screen"/></td>

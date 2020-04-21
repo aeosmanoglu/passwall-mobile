@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/detail_page.dart';
 import 'package:Passwall/login_page.dart';
 import 'package:Passwall/objects.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
@@ -22,11 +25,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  Future<void> refresh() async {
-    await Future.delayed(Duration(milliseconds: 400));
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     future = searchQuery == "" ? Antenna().getCredentials() : Antenna().search(searchQuery);
@@ -39,17 +37,26 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.more_vert),
             itemBuilder: (BuildContext context) =>
             [
-              PopupMenuItem(value: 0, child: Text("Export All")),
-              PopupMenuItem(value: 1, child: Text("Log Out")),
+              PopupMenuItem(value: 0, child: Text("Import")),
+              PopupMenuItem(value: 1, child: Text("Export")),
+              PopupMenuItem(value: 2, child: Text("Log Out")),
             ],
             onSelected: (value) async {
               switch (value) {
                 case 0:
                   {
-                    Antenna().export();
+                    File file;
+                    file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['csv']);
+                    await Antenna().import(file);
+                    setState(() {});
                     break;
                   }
                 case 1:
+                  {
+                    Antenna().export();
+                    break;
+                  }
+                case 2:
                   {
                     print("Loging out");
                     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -227,12 +234,12 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: creator,
+        onPressed: createNew,
       ),
     );
   }
 
-  void creator() {
+  void createNew() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -291,4 +298,10 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  Future<void> refresh() async {
+    await Future.delayed(Duration(milliseconds: 400));
+    setState(() {});
+  }
+
 }
