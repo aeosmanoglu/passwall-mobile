@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     future = searchQuery == "" ? Antenna().getCredentials() : Antenna().search(searchQuery);
     return Scaffold(
       appBar: AppBar(
-        title: Text("PassWall"),
+        title: Text("PassWall", style: TextStyle(fontFamily: "serif", fontWeight: FontWeight.w900)),
         centerTitle: true,
         actions: <Widget>[
           PopupMenuButton(
@@ -95,7 +95,12 @@ class _HomePageState extends State<HomePage> {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
-                    return Center(child: CircularProgressIndicator());
+                    return Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[CircularProgressIndicator()],
+                      ),
+                    );
                   default:
                     if (snapshot.hasError) {
                       return Text(snapshot.error);
@@ -285,12 +290,11 @@ class _HomePageState extends State<HomePage> {
           actions: <Widget>[
             FlatButton(
               child: Text("CANCEL"),
-              textColor: Colors.red,
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            FlatButton(
+            RaisedButton(
               child: Text("SAVE"),
               onPressed: () async {
                 if (title == null || title == "") {

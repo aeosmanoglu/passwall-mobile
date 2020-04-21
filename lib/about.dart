@@ -34,8 +34,14 @@ class _AboutPageState extends State<AboutPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Link(child: Text("Logos provided by Clearbit", style: TextStyle(color: Colors.blue)), url: "https://clearbit.com/logo"),
-                  Text(
-                      "http, shared_preferences, esys_flutter_share, path_provider, file_picker, link, flutter_launcher_name, flutter_launcher_icons"),
+                  Text("http, "
+                      "shared_preferences, "
+                      "esys_flutter_share, "
+                      "path_provider, "
+                      "file_picker, "
+                      "link, "
+                      "flutter_launcher_name, "
+                      "flutter_launcher_icons"),
                 ],
               ),
             ),

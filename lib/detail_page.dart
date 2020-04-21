@@ -113,14 +113,14 @@ class _DetailPageState extends State<DetailPage> {
                 icon: Icon(Icons.shuffle),
                 label: Text("Generate Password"),
               ),
-              OutlineButton.icon(
+              RaisedButton.icon(
                 onPressed: () async {
                   await Antenna().update(widget.credential.id, url, username, password);
                   Navigator.of(context).pop();
                   setState(() {});
                 },
-                icon: Icon(Icons.save),
-                label: Text("SAVE"),
+                icon: Icon(Icons.save, color: Colors.white,),
+                label: Text("SAVE", style: TextStyle(color: Colors.white),),
               )
             ],
           )

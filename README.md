@@ -54,8 +54,8 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 	    - [x] With file pick
 	    - [ ] ~~Share Intent~~ *postponed*
 - [ ] v0.4.0 Polishing
-	- [ ] Logo and Name
-	- [ ] UI customise
+	- [x] Logo and Name
+	- [x] UI customise *Not bad for now i guess*
 	- [x] About page  
 	- [ ] Re-design for large screens
 - [ ] v0.5.0 Securing
@@ -72,6 +72,8 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
   - [ ] ~~iOS~~
 
 ## Some Screen Shots
+
+> I know, I know! Have to be updated again.
 
 ### Screens
 
