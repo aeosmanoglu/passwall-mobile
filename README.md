@@ -4,11 +4,27 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 ## Getting Started
 
-[Install](https://flutter.dev/docs/get-started/install) Flutter, clone the repository  and let’s Rock!
+1. First, clone the [server app](https://github.com/pass-wall/passwall-server) and buld it.
 
-Do not forget the  `flutter pub get` 
+1. Then, [Install](https://flutter.dev/docs/get-started/install) Flutter, clone the repository  and let’s Rock!
+
+1. Do not forget the  `flutter pub get` 
 
 > For help getting started with Flutter, view their [online documentation](https://flutter.dev/docs), which offers tutorials, samples, guidance on mobile development, and a full API reference.
+
+## Hello Contributers
+
+1. Don't send too much commit at once. It will be easier for us to do a code review.
+
+1. Be sure to take a look at the second branch. The version I am working on is there.
+
+1. First try to fix `//TODO:`s in the code.
+
+1. Then you can contribute to the development by following the mile stones.
+
+1. Don't mess with the user interface. The design guide has not been released yet.
+
+> When you want to connect to the localhost server with the Android emulator, you connect to the emulator's localhost server and you get an error. Instead, try connecting to the [Heroku Demo server](https://passwall-demo.herokuapp.com).
 
 ## Mile Stones
 
@@ -26,22 +42,30 @@ Do not forget the  `flutter pub get`
 	- [x] Update credential
 	- [x] Create new credential
 	- [x] Generate password
-	- [ ] ~~Order the list~~
+	- [ ] ~~Order the list~~ *postponed*
 	- [x] Keeping logs
 - [x] v0.3.0 Sharing
 	- [x] Export credential and share
 	- [x] Import credential
 	    - [x] With file pick
-	    - [ ] Share Intent
-- [ ] v0.4.0 Powering Up
-	- [ ] Biometric Auth
-	- [ ] Dark Mode
-	- [ ] Localization
+	    - [ ] ~~Share Intent~~ *postponed*
 - [ ] v0.4.0 Polishing
 	- [ ] Logo
 	- [ ] UI customise
-	- [ ] About page  
+	- [x] About page  
+	- [ ] Re-design for large screens
+- [ ] v0.5.0 Securing
+	- [ ] Biometric Auth
+	- [ ] iOS Blur Screen when the app is in the background
+- [ ] v0.6.0 Powering Up
+	- [ ] Dark Mode
+	- [ ] Localization
 - [ ] V1.0.0 Compile’n release
+  - [ ] AndroidOS
+  - [ ] MacOS
+  - [ ] Windows
+  - [ ] Browser
+  - [ ] ~~iOS~~
 
 ## Some Screen Shots
 
