@@ -44,27 +44,51 @@ Do not forget the  `flutter pub get`
 - [ ] V1.0.0 Compile’n release
 
 ## Some Screen Shots
-[comment]: <> (TODO: Refresh screenshots)
+
+### Screens
+
 <table>
-  <tr>
-    <td><img src="screenshots/login.png" alt="Login Screen"/></td>
-    <td><img src="screenshots/main.png" alt="Main Screen"/></td>
-    <td><img src="screenshots/actions.png" alt="Tile Actions"/></td>
+    <tr>
+        <td><img src="screenshots/login.png" alt="Login Screen"/></td>
+        <td><img src="screenshots/main.png" alt="Main Screen"/></td>
+        <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
+        <td><img src="screenshots/about.png" alt="About Screen"/></td>
+    </tr>
+    <tr>
+        <td>Login Screen:point_up:</td>
+        <td>Main Screen:point_up:</td>
+        <td>Detail Screen:point_up:</td>
+        <td>About Screen:point_up:</td>
+    </tr>
+</table>
+
+### Actions
+
+<table>
+    <tr>
+        <td><img src="screenshots/mainAction.png" alt="Main Action"/></td>
+        <td><img src="screenshots/tileAction.png" alt="Tile Action"/></td>
+        <td><img src="screenshots/createNew.png" alt="Create New"/></td>
+    </tr>
+    <tr>
+        <td>Main Action:point_up:</td>
+        <td>Tile Action:point_up:</td>
+        <td>Create New:point_up:</td>
+    </tr>
+</table>
+
+### Share
+
+<table>
+    <tr>
+        <td><img src="screenshots/export.png" alt="Export"/></td>
+        <td><img src="screenshots/import.png" alt="Import"/></td>
+        <td><img src="screenshots/share.png" alt="Share"/></td>
   </tr>
   <tr>
-    <td>Login Screen:point_up:</td>
-    <td>Main Screen:point_up:</td>
-    <td>List Tile Actions:point_up:</td>
-    
-  </tr>
-  <tr>
-    <td><img src="screenshots/create.png" alt="Create Dialog"/></td>
-    <td><img src="screenshots/detail.png" alt="Detail Screen"/></td>
-    <td><img src="screenshots/share.png" alt="Sharing Action"/></td>
-  <tr>
-    <td>Create Dialog:point_up:</td>
-    <td>Detail Screen:point_up:</td>
-    <td>Sharing Action:point_up:</td>
+        <td>Export:point_up:</td>
+        <td>Import:point_up:</td>
+        <td>Share:point_up:</td>
   </tr>
 </table>
 
