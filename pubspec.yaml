@@ -1,6 +1,6 @@
 name: Passwall
 description: PassWall Mobile is a mobile client for PassWall API written with Flutter.
-version: 0.3.0+1
+version: 0.4.0+1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -14,6 +14,8 @@ dependencies:
   path_provider:
   file_picker: # TODO: https://github.com/miguelpruivo/flutter_file_picker/wiki/Setup#--desktop-go-flutter
   link:
+  flutter_launcher_name:
+  flutter_launcher_icons:
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +27,16 @@ flutter:
     - family: mono
       fonts:
         - asset: fonts/RobotoMono-Regular.ttf
+    - family: serif
+      fonts:
+        - asset: fonts/PlayfairDisplay.ttf
+
+flutter_launcher_name:
+  name: "PassWall"
+
+flutter_icons:
+  image_path: "assets/icons/icon.png"
+  android: true
+  ios: true
+  adaptive_icon_background: "assets/icons/background.png"
+  adaptive_icon_foreground: "assets/icons/foreground.png"

@@ -1,0 +1,124 @@
+name: macOS Builder
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Flutter action
+        uses: subosito/flutter-action@v1.3.0
+
+
+      # Build APK
+      - name: Build APK
+        run: flutter build apk
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          tag: v0.4.0
+          overwrite: true
+
+      # apk-arm
+      - name: Build APK android-arm
+        run: flutter build apk --target-platform android-arm
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/apk/release/app-release.apk
+          asset_name: app-release-android-arm.apk
+          tag: v0.4.0
+          overwrite: true
+
+      # apk-arm64
+      - name: Build APK android-arm64
+        run: flutter build apk --target-platform android-arm64
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/apk/release/app-release.apk
+          asset_name: app-release-android-arm64.apk
+          tag: v0.4.0
+          overwrite: true
+
+      # apk-x64
+      - name: Build APK android-x64
+        run: flutter build apk --target-platform android-x64
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/apk/release/app-release.apk
+          asset_name: app-release-android-x64.apk
+          tag: v0.4.0
+          overwrite: true
+
+
+
+      # Build BUNDLE
+      - name: Build Bundle
+        run: flutter build appbundle
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/bundle/release/app-release.aab
+          asset_name: app-release.aab
+          tag: v0.4.0
+          overwrite: true
+
+      # aab-arm
+      - name: Build APK android-arm
+        run: flutter build appbundle --target-platform android-arm
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/bundle/release/app-release.aab
+          asset_name: app-release-android-arm.aab
+          tag: v0.4.0
+          overwrite: true
+
+      # aab-arm64
+      - name: Build APK android-arm64
+        run: flutter build appbundle --target-platform android-arm64
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/bundle/release/app-release.aab
+          asset_name: app-release-android-arm64.aab
+          tag: v0.4.0
+          overwrite: true
+
+      # aab-x64
+      - name: Build APK android-x64
+        run: flutter build appbundle --target-platform android-x64
+
+      - name: Upload files to a GitHub release
+        uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/app/outputs/bundle/release/app-release.aab
+          asset_name: app-release-android-x64.aab
+          tag: v0.4.0
+          overwrite: true
