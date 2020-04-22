@@ -8,6 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   http:
   shared_preferences:
   esys_flutter_share:
@@ -23,6 +25,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lang/tr.json
+    - lang/en.json
   fonts:
     - family: mono
       fonts:
