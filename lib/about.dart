@@ -47,7 +47,7 @@ class _AboutPageState extends State<AboutPage> {
             ),
             ListTile(
               title: Text("Version"),
-              subtitle: Text("0.3.0", style: TextStyle(fontFamily: "mono")),
+              subtitle: Text("0.4.0", style: TextStyle(fontFamily: "mono")),
             ),
           ],
         ),
