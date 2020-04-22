@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:Passwall/about.dart';
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/detail_page.dart';
+import 'package:Passwall/localization.dart';
 import 'package:Passwall/login_page.dart';
 import 'package:Passwall/objects.dart';
 import 'package:file_picker/file_picker.dart';
@@ -30,14 +31,14 @@ class _HomePageState extends State<HomePage> {
   Future<bool> _showConfirmationDialog(context) {
     return showDialog(context: context, barrierDismissible: false, builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Are you sure to delete this credential?'),
+        title: Text(AppLocalizations.of(context).trans('delete_confirmation')),
         actions: <Widget>[
           FlatButton.icon(onPressed: () {
             Navigator.pop(context, true);
-          }, icon: Icon(Icons.check), label: Text('Yes')),
+          }, icon: Icon(Icons.check), label: Text(AppLocalizations.of(context).trans('yes'))),
           FlatButton.icon(onPressed: () {
             Navigator.pop(context, false);
-          }, icon: Icon(Icons.close), label: Text('No')),
+          }, icon: Icon(Icons.close), label: Text(AppLocalizations.of(context).trans('no'))),
         ],
       );
     });
@@ -55,10 +56,10 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.more_vert),
             itemBuilder: (BuildContext context) =>
             [
-              PopupMenuItem(value: 0, child: Text("Import")),
-              PopupMenuItem(value: 1, child: Text("Export")),
-              PopupMenuItem(value: 2, child: Text("About")),
-              PopupMenuItem(value: 3, child: Text("Log Out", style: TextStyle(color: Colors.red))),
+              PopupMenuItem(value: 0, child: Text(AppLocalizations.of(context).trans('import'))),
+              PopupMenuItem(value: 1, child: Text(AppLocalizations.of(context).trans('export'))),
+              PopupMenuItem(value: 2, child: Text(AppLocalizations.of(context).trans('about'))),
+              PopupMenuItem(value: 3, child: Text(AppLocalizations.of(context).trans('logout'), style: TextStyle(color: Colors.red))),
             ],
             onSelected: (value) async {
               switch (value) {
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Icon(Icons.inbox, size: 50, color: Colors.black26),
-                            Text("There is no data", style: Theme
+                            Text(AppLocalizations.of(context).trans('nodata'), style: Theme
                                 .of(context)
                                 .textTheme
                                 .title),
@@ -223,9 +224,9 @@ class _HomePageState extends State<HomePage> {
                                         icon: Icon(Icons.more_vert),
                                         itemBuilder: (BuildContext context) =>
                                         [
-                                          PopupMenuItem(value: 0, child: Text("Copy Username")),
-                                          PopupMenuItem(value: 1, child: Text("Copy Password")),
-                                          PopupMenuItem(value: 2, child: Text("Share")),
+                                          PopupMenuItem(value: 0, child: Text(AppLocalizations.of(context).trans('copy_username'))),
+                                          PopupMenuItem(value: 1, child: Text(AppLocalizations.of(context).trans('copy_pw'))),
+                                          PopupMenuItem(value: 2, child: Text(AppLocalizations.of(context).trans('share'))),
                                         ],
                                         onSelected: (value) {
                                           switch (value) {
