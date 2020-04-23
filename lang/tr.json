@@ -1,0 +1,13 @@
+{
+  "delete_confirmation": "Bu kimliği silmek istediğinizden emin misiniz?",
+  "yes": "Evet",
+  "no": "Hayır",
+  "import": "İçe Aktar",
+  "export": "Dışa Aktar",
+  "about": "Hakkımızda",
+  "logout": "Çıkış",
+  "nodata": "Veri yok",
+  "copy_username": "Kullanıcı Adını Kopyala",
+  "copy_pw": "Şifreyi Kopyala",
+  "share": "Paylaş"
+}

@@ -1,0 +1,14 @@
+{
+  "delete_confirmation": "Are you sure to delete this credential?",
+  "yes": "yes",
+  "no": "no",
+  "import": "Import",
+  "export": "Export",
+  "about": "About",
+  "logout": "Logout",
+  "nodata": "There is no data",
+  "copy_username": "Copy Username",
+  "copy_pw": "Copy Password",
+  "share": "Share"
+  
+}

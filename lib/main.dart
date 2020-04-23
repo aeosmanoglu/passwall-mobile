@@ -1,7 +1,9 @@
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/home_page.dart';
+import 'package:Passwall/localization_delegate.dart';
 import 'package:Passwall/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
@@ -20,6 +22,26 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: Gate(),
+      supportedLocales: [const Locale('tr'), const Locale('en')],
+      localizationsDelegates: [
+          AppLocalizationDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+      ],
+      localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales) {
+        if (locale == null) {
+          debugPrint("*language locale is null!!!");
+          return supportedLocales.first;
+        }
+        for (Locale supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode ||
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+
+        return supportedLocales.first;
+      }
     );
   }
 }
