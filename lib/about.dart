@@ -39,15 +39,13 @@ class _AboutPageState extends State<AboutPage> {
                       "esys_flutter_share, "
                       "path_provider, "
                       "file_picker, "
-                      "link, "
-                      "flutter_launcher_name, "
-                      "flutter_launcher_icons"),
+                      "link"),
                 ],
               ),
             ),
             ListTile(
               title: Text("Version"),
-              subtitle: Text("0.4.0", style: TextStyle(fontFamily: "mono")),
+              subtitle: Text("0.4.1", style: TextStyle(fontFamily: "mono")),
             ),
           ],
         ),
