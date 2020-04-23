@@ -1,4 +1,5 @@
 import 'package:Passwall/antenna.dart';
+import 'package:Passwall/localization.dart';
 import 'package:Passwall/objects.dart';
 import 'package:flutter/material.dart';
 
@@ -76,26 +77,26 @@ class _DetailPageState extends State<DetailPage> {
         padding: EdgeInsets.all(20),
         children: <Widget>[
           textField(
-            label: "URL",
+            label: AppLocalizations.of(context).trans('url'),
             controller: urlController,
             icon: Icon(Icons.language),
             i: 0,
           ),
           SizedBox(height: 10),
           textField(
-            label: "Username",
+            label: AppLocalizations.of(context).trans('username'),
             controller: usernameController,
             icon: Icon(Icons.perm_identity),
             i: 1,
           ),
           SizedBox(height: 10),
           textField(
-            label: "Password",
+            label: AppLocalizations.of(context).trans('password'),
             controller: passwordController,
             icon: Icon(Icons.lock_open),
             font: "mono",
             i: 2,
-            help: "Leave blank for a random password",
+            help: AppLocalizations.of(context).trans('leave_blank'),
           ),
           SizedBox(height: 10),
           Row(
@@ -111,7 +112,7 @@ class _DetailPageState extends State<DetailPage> {
                   });
                 },
                 icon: Icon(Icons.shuffle),
-                label: Text("Generate Password"),
+                label: Text(AppLocalizations.of(context).trans('gen_pw')),
               ),
               RaisedButton.icon(
                 onPressed: () async {
@@ -119,8 +120,14 @@ class _DetailPageState extends State<DetailPage> {
                   Navigator.of(context).pop();
                   setState(() {});
                 },
-                icon: Icon(Icons.save, color: Colors.white,),
-                label: Text("SAVE", style: TextStyle(color: Colors.white),),
+                icon: Icon(
+                  Icons.save,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  AppLocalizations.of(context).trans('save'),
+                  style: TextStyle(color: Colors.white),
+                ),
               )
             ],
           )

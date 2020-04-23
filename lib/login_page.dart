@@ -1,5 +1,6 @@
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/home_page.dart';
+import 'package:Passwall/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -79,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: baseUrlController,
               autoFocus: false,
               obscure: false,
-              label: "Base URL",
+              label: AppLocalizations.of(context).trans('base_URL'),
               hint: "https://my.server.com:3625",
               icon: Icon(Icons.language),
               i: 0,
@@ -88,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             textField(
               autoFocus: true,
               obscure: false,
-              label: "Username",
+              label: AppLocalizations.of(context).trans('username'),
               icon: Icon(Icons.perm_identity),
               i: 1,
             ),
@@ -96,13 +97,13 @@ class _LoginPageState extends State<LoginPage> {
             textField(
               autoFocus: false,
               obscure: true,
-              label: "Password",
+              label: AppLocalizations.of(context).trans('password'),
               icon: Icon(Icons.lock_outline),
               i: 2,
             ),
             SizedBox(height: 10),
             FlatButton(
-              child: Text("LOG IN"),
+              child: Text(AppLocalizations.of(context).trans('login')),
               onPressed: () {
                 login();
               },
@@ -128,14 +129,14 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Something went wrong"),
-            content: Text("Please check your username, password or base URL again"),
+            title: Text(AppLocalizations.of(context).trans('swr')),
+            content: Text(AppLocalizations.of(context).trans('swr_')),
             actions: <Widget>[
               FlatButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("OK"),
+                child: Text(AppLocalizations.of(context).trans('ok')),
               )
             ],
           );

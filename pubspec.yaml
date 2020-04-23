@@ -1,6 +1,6 @@
 name: Passwall
 description: PassWall Mobile is a mobile client for PassWall API written with Flutter.
-version: 0.4.1+2
+version: 0.4.2+3
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
