@@ -28,7 +28,7 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 1. Don't mess with the user interface. The design guide has not been released yet.
 
-> When you want to connect to the localhost server with the Android emulator, you connect to the emulator's localhost server and you get an error. Instead, try connecting to the [Heroku Demo server](https://passwall-demo.herokuapp.com).
+> When you want to connect to the localhost server with the Android emulator, you connect to the emulator's localhost server and you get an error. Instead, try connecting to the [Heroku Demo server](https://passwall-server.herokuapp.com).
 
 ## Mile Stones
 
@@ -63,7 +63,7 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 	- [ ] iOS Blur Screen when the app is in the background
 - [ ] v0.6.0 Powering Up
 	- [ ] Dark Mode
-	- [ ] Localization
+	- [x] Localization
 - [ ] V1.0.0 Compile’n release
     - [x] AndroidOS
     - [ ] MacOS
