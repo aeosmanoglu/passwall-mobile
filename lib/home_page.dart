@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:Passwall/about.dart';
+import 'package:Passwall/about_page.dart';
 import 'package:Passwall/antenna.dart';
 import 'package:Passwall/detail_page.dart';
 import 'package:Passwall/localization.dart';
@@ -27,21 +26,29 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-
   Future<bool> _showConfirmationDialog(context) {
-    return showDialog(context: context, barrierDismissible: false, builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(AppLocalizations.of(context).trans('delete_confirmation')),
-        actions: <Widget>[
-          FlatButton.icon(onPressed: () {
-            Navigator.pop(context, true);
-          }, icon: Icon(Icons.check), label: Text(AppLocalizations.of(context).trans('yes'))),
-          FlatButton.icon(onPressed: () {
-            Navigator.pop(context, false);
-          }, icon: Icon(Icons.close), label: Text(AppLocalizations.of(context).trans('no'))),
-        ],
-      );
-    });
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(AppLocalizations.of(context).trans('delete_confirmation')),
+            actions: <Widget>[
+              FlatButton.icon(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  icon: Icon(Icons.check),
+                  label: Text(AppLocalizations.of(context).trans('yes'))),
+              FlatButton.icon(
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  icon: Icon(Icons.close),
+                  label: Text(AppLocalizations.of(context).trans('no'))),
+            ],
+          );
+        });
   }
 
   @override
@@ -128,10 +135,10 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Icon(Icons.inbox, size: 50, color: Colors.black26),
-                            Text(AppLocalizations.of(context).trans('nodata'), style: Theme
+                            Text(AppLocalizations.of(context).trans('no_data'), style: Theme
                                 .of(context)
                                 .textTheme
-                                .title),
+                                .title)
                           ],
                         ),
                       );
@@ -234,22 +241,25 @@ class _HomePageState extends State<HomePage> {
                                               {
                                                 Clipboard.setData(ClipboardData(text: snapshot.data[index].username));
                                                 print("Username copied to Clipboard: " + snapshot.data[index].username);
-                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Username copied to clipboard.")));
+                                                Scaffold.of(context)
+                                                    .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).trans('copy_username_'))));
                                                 break;
                                               }
                                             case 1:
                                               {
                                                 Clipboard.setData(ClipboardData(text: snapshot.data[index].password));
                                                 print("Password copied to Clipboard: " + snapshot.data[index].password);
-                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Password copied to clipboard.")));
+                                                Scaffold.of(context)
+                                                    .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).trans('copy_pw_'))));
                                                 break;
                                               }
                                             case 2:
                                               {
                                                 Credential i = snapshot.data[index];
                                                 Share.text(
-                                                  "Sensitive data from PassWall",
-                                                  "Sensitive data from PassWall\nURL: ${i.url}\nUsername: ${i.username}\nPassword: ${i.password}",
+                                                  AppLocalizations.of(context).trans('sensitive'),
+                                                  AppLocalizations.of(context).trans('sensitive') +
+                                                      "\nURL: ${i.url}\nUsername: ${i.username}\nPassword: ${i.password}",
                                                   "text/plain",
                                                 );
                                               }
@@ -286,27 +296,33 @@ class _HomePageState extends State<HomePage> {
         String username = "";
         String password = "";
         return AlertDialog(
-          title: Text("Create new credential"),
+          title: Text(AppLocalizations.of(context).trans('create_new')),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               TextField(
                 autocorrect: false,
-                decoration: InputDecoration(labelText: "Title", hintText: "http://passwall.io"),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context).trans('url'),
+                  hintText: "http://passwall.io",
+                ),
                 onChanged: (text) {
                   title = text;
                 },
               ),
               TextField(
                 autocorrect: false,
-                decoration: InputDecoration(labelText: "Username"),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context).trans('username')),
                 onChanged: (text) {
                   username = text;
                 },
               ),
               TextField(
                 autocorrect: false,
-                decoration: InputDecoration(labelText: "Password", helperText: "Leave blank for a random password"),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context).trans('password'),
+                  helperText: AppLocalizations.of(context).trans('leave_blank'),
+                ),
                 onChanged: (text) {
                   password = text;
                 },
@@ -315,16 +331,16 @@ class _HomePageState extends State<HomePage> {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text("CANCEL"),
+              child: Text(AppLocalizations.of(context).trans('cancel')),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             RaisedButton(
-              child: Text("SAVE"),
+              child: Text(AppLocalizations.of(context).trans('save')),
               onPressed: () async {
                 if (title == null || title == "") {
-                  title = "NoTitle";
+                  title = AppLocalizations.of(context).trans('no_title');
                 }
                 await Antenna().create(title: title, username: username, password: password);
                 Navigator.of(context).pop();

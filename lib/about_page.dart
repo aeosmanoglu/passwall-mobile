@@ -1,3 +1,4 @@
+import 'package:Passwall/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:link/link.dart';
 
@@ -10,25 +11,25 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("About")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).trans('about'))),
       body: Center(
         child: ListView(
           padding: EdgeInsets.all(20),
           children: <Widget>[
             ListTile(
-              title: Text("About This App"),
+              title: Text(AppLocalizations.of(context).trans('about_this_app')),
               subtitle: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Developed with Flutter as part of the PassWall organization. The codes of this open source project are on GitHub."),
-                  Link(child: Text("Passwall Home Page", style: TextStyle(color: Colors.blue)), url: "https://passwall.io"),
+                  Text(AppLocalizations.of(context).trans('about_this_app_')),
+                  Link(child: Text("passwall.io", style: TextStyle(color: Colors.blue)), url: "https://passwall.io"),
                   Link(child: Text("GitHub Repository", style: TextStyle(color: Colors.blue)), url: "https://github.com/pass-wall/passwall-mobile"),
                 ],
               ),
             ),
             ListTile(
-              title: Text("Dependencies"),
+              title: Text(AppLocalizations.of(context).trans('dependencies')),
               subtitle: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,8 +45,8 @@ class _AboutPageState extends State<AboutPage> {
               ),
             ),
             ListTile(
-              title: Text("Version"),
-              subtitle: Text("0.4.1", style: TextStyle(fontFamily: "mono")),
+              title: Text(AppLocalizations.of(context).trans('version')),
+              subtitle: Text("0.4.2", style: TextStyle(fontFamily: "mono")),
             ),
           ],
         ),
