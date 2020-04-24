@@ -73,42 +73,47 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.all(20),
-          children: <Widget>[
-            textField(
-              controller: baseUrlController,
-              autoFocus: false,
-              obscure: false,
-              label: AppLocalizations.of(context).trans('base_URL'),
-              hint: "https://my.server.com:3625",
-              icon: Icon(Icons.language),
-              i: 0,
+        child: Center(
+          child: SizedBox(
+            width: 400,
+            child: ListView(
+              padding: EdgeInsets.all(40),
+              children: <Widget>[
+                textField(
+                  controller: baseUrlController,
+                  autoFocus: false,
+                  obscure: false,
+                  label: AppLocalizations.of(context).trans('base_URL'),
+                  hint: "https://my.server.com:3625",
+                  icon: Icon(Icons.language),
+                  i: 0,
+                ),
+                SizedBox(height: 10),
+                textField(
+                  autoFocus: true,
+                  obscure: false,
+                  label: AppLocalizations.of(context).trans('username'),
+                  icon: Icon(Icons.perm_identity),
+                  i: 1,
+                ),
+                SizedBox(height: 10),
+                textField(
+                  autoFocus: false,
+                  obscure: true,
+                  label: AppLocalizations.of(context).trans('password'),
+                  icon: Icon(Icons.lock_outline),
+                  i: 2,
+                ),
+                SizedBox(height: 10),
+                FlatButton(
+                  child: Text(AppLocalizations.of(context).trans('login')),
+                  onPressed: () {
+                    login();
+                  },
+                )
+              ],
             ),
-            SizedBox(height: 10),
-            textField(
-              autoFocus: true,
-              obscure: false,
-              label: AppLocalizations.of(context).trans('username'),
-              icon: Icon(Icons.perm_identity),
-              i: 1,
-            ),
-            SizedBox(height: 10),
-            textField(
-              autoFocus: false,
-              obscure: true,
-              label: AppLocalizations.of(context).trans('password'),
-              icon: Icon(Icons.lock_outline),
-              i: 2,
-            ),
-            SizedBox(height: 10),
-            FlatButton(
-              child: Text(AppLocalizations.of(context).trans('login')),
-              onPressed: () {
-                login();
-              },
-            )
-          ],
+          ),
         ),
       ),
     );
