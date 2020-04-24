@@ -1,5 +1,5 @@
 import 'package:Passwall/antenna.dart';
-import 'package:Passwall/pages/home_page.dart';
+import 'package:Passwall/pages/list_page.dart';
 import 'package:Passwall/localization/localization_delegate.dart';
 import 'package:Passwall/pages/login_page.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +71,7 @@ class _GateState extends State<Gate> {
   router(String token) {
     Antenna().gateKeeper(token).then((success) {
       if (success) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomePage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new ListPage()));
       } else {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new LoginPage()));
       }

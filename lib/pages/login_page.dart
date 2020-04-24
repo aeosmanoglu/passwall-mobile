@@ -1,5 +1,5 @@
 import 'package:Passwall/antenna.dart';
-import 'package:Passwall/pages/home_page.dart';
+import 'package:Passwall/pages/list_page.dart';
 import 'package:Passwall/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
   login() {
     Antenna().login(username, password, baseURL).then((success) {
       if (success) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomePage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new ListPage()));
       } else {
         dialog();
       }

@@ -11,12 +11,12 @@ import 'package:flutter/services.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatefulWidget {
+class ListPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _ListPageState createState() => _ListPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ListPageState extends State<ListPage> {
   Future<List<Credential>> future;
   String searchQuery = "";
 
