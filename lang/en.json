@@ -1,7 +1,7 @@
 {
   "delete_confirmation": "Are you sure to delete this data?",
-  "yes": "yes",
-  "no": "no",
+  "yes": "YES",
+  "no": "NO",
   "import": "Import",
   "export": "Export",
   "about": "About",
@@ -30,5 +30,6 @@
   "copy_username_": "Username copied to clipboard.",
   "copy_pw_": "Password copied to clipboard.",
   "sensitive": "Sensitive data from PassWall",
-  "no_title": "NoTitle"
+  "no_title": "NoTitle",
+  "select": "Select a Login"
 }

@@ -27,7 +27,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true
 
       # apk-arm
@@ -40,7 +40,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-arm.apk
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true
 
       # apk-arm64
@@ -53,7 +53,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-arm64.apk
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true
 
       # apk-x64
@@ -66,7 +66,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-x64.apk
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true
 
 
@@ -81,7 +81,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release.aab
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true
 
       # aab-arm
@@ -94,7 +94,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-arm.aab
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true
 
       # aab-arm64
@@ -107,7 +107,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-arm64.aab
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true
 
       # aab-x64
@@ -120,5 +120,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-x64.aab
-          tag: v0.4.2
+          tag: v0.5.0
           overwrite: true

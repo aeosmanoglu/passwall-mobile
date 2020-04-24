@@ -53,11 +53,11 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 	- [x] Import credential
 	    - [x] With file pick
 	    - [ ] ~~Share Intent~~ *postponed*
-- [ ] v0.4.0 Polishing
+- [x] v0.4.0 Polishing
 	- [x] Logo and Name
 	- [x] UI customise *Not bad for now i guess*
 	- [x] About page  
-	- [ ] Re-design for large screens
+	- [x] Re-design for large screens
 - [ ] v0.5.0 Securing
 	- [ ] Biometric Auth
 	- [ ] iOS Blur Screen when the app is in the background

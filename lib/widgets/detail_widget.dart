@@ -27,8 +27,17 @@ class _DetailWidgetState extends State<DetailWidget> {
     usernameController.text = username;
     passwordController.text = password;
     return (widget.credential == null)
-        ? Center(
-      child: Text("hello"),
+        ? Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Image.asset("assets/select.png", width: 200),
+        SizedBox(height: 10),
+        Text(AppLocalizations.of(context).trans('select'), style: Theme
+            .of(context)
+            .textTheme
+            .title)
+      ],
     )
         : ListView(
       padding: EdgeInsets.all(40),

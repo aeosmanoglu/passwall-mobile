@@ -64,7 +64,8 @@ class _ListWidgetState extends State<ListWidget> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Icon(Icons.inbox, size: 50, color: Colors.black26),
+                          Image.asset("assets/no_data.png", width: 200),
+                          SizedBox(height: 10),
                           Text(AppLocalizations.of(context).trans('no_data'), style: Theme.of(context).textTheme.title)
                         ],
                       ),
