@@ -1,7 +1,7 @@
 {
   "delete_confirmation": "Bu bilgiyi silmek istediğinizden emin misiniz?",
-  "yes": "Evet",
-  "no": "Hayır",
+  "yes": "EVET",
+  "no": "HAYIR",
   "import": "İçe Aktar",
   "export": "Dışa Aktar",
   "about": "Hakkında",
