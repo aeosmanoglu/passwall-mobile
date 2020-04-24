@@ -30,5 +30,6 @@
   "copy_username_": "Kullanıcı adı panoya kopyalandı.",
   "copy_pw_": "Parola panoya kopyalandı.",
   "sensitive": "PassWall'dan hassas içerik",
-  "no_title": "Başlıksız"
+  "no_title": "Başlıksız",
+  "select": "Bir Kayıt Seçin"
 }
