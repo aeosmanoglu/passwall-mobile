@@ -1,4 +1,4 @@
-import 'package:Passwall/antenna.dart';
+import 'package:Passwall/utils/antenna.dart';
 import 'package:Passwall/pages/list_page.dart';
 import 'package:Passwall/localization/localization_delegate.dart';
 import 'package:Passwall/pages/login_page.dart';

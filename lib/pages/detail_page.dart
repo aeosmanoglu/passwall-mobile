@@ -1,6 +1,6 @@
-import 'package:Passwall/antenna.dart';
+import 'package:Passwall/utils/antenna.dart';
 import 'package:Passwall/localization/localization.dart';
-import 'package:Passwall/objects.dart';
+import 'package:Passwall/utils/objects.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:Passwall/objects.dart';
+import 'package:Passwall/utils/objects.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
