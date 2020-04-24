@@ -1,3 +1,4 @@
+import 'package:Passwall/pages/home_page.dart';
 import 'package:Passwall/utils/antenna.dart';
 import 'package:Passwall/pages/list_page.dart';
 import 'package:Passwall/localization/localization_delegate.dart';
@@ -12,37 +13,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        buttonTheme: ButtonThemeData(
-          buttonColor: Colors.deepOrangeAccent,
-          textTheme: ButtonTextTheme.accent,
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.system,
+        theme: ThemeData(
+          primarySwatch: Colors.deepOrange,
+          buttonTheme: ButtonThemeData(
+            buttonColor: Colors.deepOrangeAccent,
+            textTheme: ButtonTextTheme.accent,
+          ),
         ),
-      ),
-      home: Gate(),
-      supportedLocales: [const Locale('tr'), const Locale('en')],
-      localizationsDelegates: [
-          AppLocalizationDelegate(),
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate
-      ],
-      localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales) {
-        if (locale == null) {
-          debugPrint("*language locale is null!!!");
-          return supportedLocales.first;
-        }
-        for (Locale supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode ||
-              supportedLocale.countryCode == locale.countryCode) {
-            return supportedLocale;
+        home: Gate(),
+        supportedLocales: [const Locale('tr'), const Locale('en')],
+        localizationsDelegates: [AppLocalizationDelegate(), GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
+        localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales) {
+          if (locale == null) {
+            debugPrint("*language locale is null!!!");
+            return supportedLocales.first;
           }
-        }
+          for (Locale supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode || supportedLocale.countryCode == locale.countryCode) {
+              return supportedLocale;
+            }
+          }
 
-        return supportedLocales.first;
-      }
-    );
+          return supportedLocales.first;
+        });
   }
 }
 
@@ -71,7 +66,14 @@ class _GateState extends State<Gate> {
   router(String token) {
     Antenna().gateKeeper(token).then((success) {
       if (success) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new ListPage()));
+        if (MediaQuery
+            .of(context)
+            .size
+            .shortestSide < 600) {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new ListPage()));
+        } else {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomePage()));
+        }
       } else {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new LoginPage()));
       }

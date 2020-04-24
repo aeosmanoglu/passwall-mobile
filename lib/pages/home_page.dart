@@ -1,20 +1,24 @@
+import 'package:Passwall/utils/objects.dart';
+import 'package:Passwall/widgets/create_fab_widget.dart';
+import 'package:Passwall/widgets/detail_widget.dart';
+import 'package:Passwall/widgets/list_widget.dart';
+import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:Passwall/pages/about_page.dart';
 import 'package:Passwall/utils/antenna.dart';
 import 'package:Passwall/localization/localization.dart';
 import 'package:Passwall/pages/login_page.dart';
-import 'package:Passwall/widgets/create_fab_widget.dart';
-import 'package:Passwall/widgets/list_widget.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ListPage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _ListPageState createState() => _ListPageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _ListPageState extends State<ListPage> {
+class _HomePageState extends State<HomePage> {
+  Credential selectedValue;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +28,7 @@ class _ListPageState extends State<ListPage> {
         actions: <Widget>[
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
-            itemBuilder: (BuildContext context) =>
-            [
+            itemBuilder: (BuildContext context) => [
               PopupMenuItem(value: 0, child: Text(AppLocalizations.of(context).trans('import'))),
               PopupMenuItem(value: 1, child: Text(AppLocalizations.of(context).trans('export'))),
               PopupMenuItem(value: 2, child: Text(AppLocalizations.of(context).trans('about'))),
@@ -64,7 +67,24 @@ class _ListPageState extends State<ListPage> {
           )
         ],
       ),
-      body: ListWidget(),
+      body: Row(
+        children: <Widget>[
+          Material(
+            elevation: 4,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width / 3,
+              child: ListWidget(onItemSelected: (value) {
+                setState(() {
+                  selectedValue = value;
+                });
+              }),
+            ),
+          ),
+          Expanded(
+            child: DetailWidget(selectedValue),
+          )
+        ],
+      ),
       floatingActionButton: FABWidget(),
     );
   }

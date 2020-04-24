@@ -19,60 +19,19 @@ class _DetailWidgetState extends State<DetailWidget> {
   String url, username, password;
 
   @override
-  void initState() {
-    urlController.text = widget.credential.url;
-    usernameController.text = widget.credential.username;
-    passwordController.text = widget.credential.password;
-    url = widget.credential.url;
-    username = widget.credential.username;
-    password = widget.credential.password;
-    super.initState();
-  }
-
-  Widget textField({
-    String font,
-    TextEditingController controller,
-    String label,
-    Icon icon,
-    String help,
-    int i,
-  }) {
-    return TextField(
-      style: TextStyle(fontFamily: font),
-      autocorrect: false,
-      controller: controller,
-      onChanged: (text) {
-        switch (i) {
-          case 0:
-            {
-              url = text;
-              break;
-            }
-          case 1:
-            {
-              username = text;
-              break;
-            }
-          case 2:
-            {
-              password = text;
-              break;
-            }
-        }
-      },
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: label,
-        helperText: help,
-        prefixIcon: icon,
-      ),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(20),
+    url = widget.credential?.url ?? "";
+    username = widget.credential?.username ?? "";
+    password = widget.credential?.password ?? "";
+    urlController.text = url;
+    usernameController.text = username;
+    passwordController.text = password;
+    return (widget.credential == null)
+        ? Center(
+      child: Text("hello"),
+    )
+        : ListView(
+      padding: EdgeInsets.all(40),
       children: <Widget>[
         textField(
           label: AppLocalizations.of(context).trans('url'),
@@ -130,6 +89,46 @@ class _DetailWidgetState extends State<DetailWidget> {
           ],
         )
       ],
+    );
+  }
+
+  Widget textField({
+    String font,
+    TextEditingController controller,
+    String label,
+    Icon icon,
+    String help,
+    int i,
+  }) {
+    return TextField(
+      style: TextStyle(fontFamily: font),
+      autocorrect: false,
+      controller: controller,
+      onChanged: (text) {
+        switch (i) {
+          case 0:
+            {
+              url = text;
+              break;
+            }
+          case 1:
+            {
+              username = text;
+              break;
+            }
+          case 2:
+            {
+              password = text;
+              break;
+            }
+        }
+      },
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: label,
+        helperText: help,
+        prefixIcon: icon,
+      ),
     );
   }
 }

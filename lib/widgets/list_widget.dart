@@ -7,7 +7,13 @@ import 'package:Passwall/localization/localization.dart';
 import 'package:Passwall/utils/objects.dart';
 import 'package:flutter/material.dart';
 
+typedef Null ItemSelectedCallback(Credential value);
+
 class ListWidget extends StatefulWidget {
+  final ItemSelectedCallback onItemSelected;
+
+  const ListWidget({this.onItemSelected});
+
   @override
   _ListWidgetState createState() => _ListWidgetState();
 }
@@ -95,7 +101,14 @@ class _ListWidgetState extends State<ListWidget> {
                             child: Card(
                               child: ListTile(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(snapshot.data[index])));
+                                  if (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .shortestSide < 600) {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(snapshot.data[index])));
+                                  } else {
+                                    widget.onItemSelected(snapshot.data[index]);
+                                  }
                                 },
                                 title: Text(snapshot.data[index].url),
                                 subtitle: Text(snapshot.data[index].username),
