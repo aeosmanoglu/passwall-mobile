@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:Passwall/about_page.dart';
+import 'package:Passwall/pages/about_page.dart';
 import 'package:Passwall/antenna.dart';
-import 'package:Passwall/detail_page.dart';
-import 'package:Passwall/localization.dart';
-import 'package:Passwall/login_page.dart';
+import 'package:Passwall/pages/detail_page.dart';
+import 'package:Passwall/localization/localization.dart';
+import 'package:Passwall/pages/login_page.dart';
 import 'package:Passwall/objects.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';

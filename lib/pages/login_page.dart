@@ -1,6 +1,6 @@
 import 'package:Passwall/antenna.dart';
-import 'package:Passwall/home_page.dart';
-import 'package:Passwall/localization.dart';
+import 'package:Passwall/pages/home_page.dart';
+import 'package:Passwall/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

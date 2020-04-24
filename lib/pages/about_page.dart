@@ -1,4 +1,4 @@
-import 'package:Passwall/localization.dart';
+import 'package:Passwall/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:link/link.dart';
 
