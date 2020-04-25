@@ -20,6 +20,7 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("PassWall", style: TextStyle(fontFamily: "serif", fontWeight: FontWeight.w900)),
         centerTitle: true,
@@ -68,10 +69,7 @@ class _ListPageState extends State<ListPage> {
           )
         ],
       ),
-      body: Scaffold(
-        key: _scaffoldKey,
-        body: ListWidget(),
-      ),
+      body: ListWidget(),
       floatingActionButton: FABWidget(hasAdded),
     );
   }
