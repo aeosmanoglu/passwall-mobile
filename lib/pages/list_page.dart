@@ -15,6 +15,8 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,9 @@ class _ListPageState extends State<ListPage> {
                     file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['csv']);
                     await Antenna().import(file);
                     setState(() {});
-                    //TODO: Add a snackbar
+                    _scaffoldKey.currentState.showSnackBar(
+                        SnackBar(content: Text(AppLocalizations.of(context).trans('success_imported')), duration: Duration(milliseconds: 500),)
+                    );
                     break;
                   }
                 case 1:
@@ -64,8 +68,25 @@ class _ListPageState extends State<ListPage> {
           )
         ],
       ),
-      body: ListWidget(),
-      floatingActionButton: FABWidget(),
+      body: Scaffold(
+        key: _scaffoldKey,
+        body: ListWidget(),
+      ),
+      floatingActionButton: FABWidget(hasAdded),
     );
   }
+
+  hasAdded(data) {
+    if (data) {
+      setState(() {});
+      _scaffoldKey.currentState.showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context).trans('success_added')), duration: Duration(milliseconds: 700),)
+      );
+    } else {
+      _scaffoldKey.currentState.showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context).trans('swr')), duration: Duration(milliseconds: 700),)
+      );
+    }
+  }
+
 }
