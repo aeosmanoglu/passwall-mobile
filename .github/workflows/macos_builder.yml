@@ -19,7 +19,10 @@ jobs:
       - name: Flutter Master Clone
         run: git clone -b master https://github.com/flutter/flutter.git
 
-      - name: Config
+      - name: Getting Packs
+        run: ./flutter/bin/flutter pub get
+
+      - name: Flutter Config
         run: ./flutter/bin/flutter config --enable-macos-desktop
 
 
