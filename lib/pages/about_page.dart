@@ -46,7 +46,7 @@ class _AboutPageState extends State<AboutPage> {
             ),
             ListTile(
               title: Text(AppLocalizations.of(context).trans('version')),
-              subtitle: Text("0.5.0", style: TextStyle(fontFamily: "mono")),
+              subtitle: Text("0.5.3", style: TextStyle(fontFamily: "mono")),
             ),
           ],
         ),
