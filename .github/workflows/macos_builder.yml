@@ -15,7 +15,7 @@ jobs:
 
       #- name: Flutter action
       #  uses: subosito/flutter-action@v1.3.0
-      
+
       - name: Flutter Master Clone
         run: git clone -b master https://github.com/flutter/flutter.git
 
@@ -33,7 +33,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
       # apk-arm
@@ -46,7 +46,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-arm.apk
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
       # apk-arm64
@@ -59,7 +59,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-arm64.apk
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
       # apk-x64
@@ -72,7 +72,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-x64.apk
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
 
@@ -87,11 +87,11 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release.aab
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
       # aab-arm
-      - name: Build APK android-arm
+      - name: Build Bundle android-arm
         run: ./flutter/bin/flutter build appbundle --target-platform android-arm
 
       - name: Upload files to a GitHub release
@@ -100,11 +100,11 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-arm.aab
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
       # aab-arm64
-      - name: Build APK android-arm64
+      - name: Build Bundle android-arm64
         run: ./flutter/bin/flutter build appbundle --target-platform android-arm64
 
       - name: Upload files to a GitHub release
@@ -113,11 +113,11 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-arm64.aab
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
       # aab-x64
-      - name: Build APK android-x64
+      - name: Build Bundle android-x64
         run: ./flutter/bin/flutter build appbundle --target-platform android-x64
 
       - name: Upload files to a GitHub release
@@ -126,19 +126,19 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-x64.aab
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true
 
 
       # Build Desktop
-      - name: Build macOS
+      - name: Build macOS App
         run: ./flutter/bin/flutter build macos
 
       - name: Upload files to a GitHub release
         uses: svenstaro/upload-release-action@1.0.1
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/macos/Build/Products/Debug/passwall.app
+          file: build/macos/Build/Products/Release/passwall.app
           asset_name: PassWall.app
-          tag: v0.5.2
+          tag: v0.5.3
           overwrite: true

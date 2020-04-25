@@ -7,7 +7,7 @@
       "size": "16x16"
     },
     {
-      "filename": "app_icon_16@2x.png",
+      "filename": "app_icon_32-1.png",
       "idiom": "mac",
       "scale": "2x",
       "size": "16x16"
@@ -19,7 +19,7 @@
       "size": "32x32"
     },
     {
-      "filename": "app_icon_32@2x.png",
+      "filename": "app_icon_64.png",
       "idiom": "mac",
       "scale": "2x",
       "size": "32x32"
@@ -31,7 +31,7 @@
       "size": "128x128"
     },
     {
-      "filename": "app_icon128@2x.png",
+      "filename": "app_icon_256-1.png",
       "idiom": "mac",
       "scale": "2x",
       "size": "128x128"
@@ -43,19 +43,19 @@
       "size": "256x256"
     },
     {
-      "filename": "app_icon_256@2x.png",
+      "filename": "app_icon_512.png",
       "idiom": "mac",
       "scale": "2x",
       "size": "256x256"
     },
     {
-      "filename": "app_icon.png",
+      "filename": "app_icon_512-1.png",
       "idiom": "mac",
       "scale": "1x",
       "size": "512x512"
     },
     {
-      "filename": "app_icon@2x.png",
+      "filename": "app_icon_1024.png",
       "idiom": "mac",
       "scale": "2x",
       "size": "512x512"
