@@ -88,7 +88,10 @@ class _ListWidgetState extends State<ListWidget> {
                               ),
                             ),
                             onDismissed: (direction) async {
-                              await Antenna().deleteCredential(snapshot.data[index].id);
+                              bool response = await Antenna().deleteCredential(snapshot.data[index].id);
+                              if (response) {
+                                setState((){});
+                              }
                             },
                             confirmDismiss: (DismissDirection direction) async {
                               switch (direction) {
