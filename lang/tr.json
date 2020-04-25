@@ -31,5 +31,7 @@
   "copy_pw_": "Parola panoya kopyalandı.",
   "sensitive": "PassWall'dan hassas içerik",
   "no_title": "Başlıksız",
-  "select": "Bir Kayıt Seçin"
+  "select": "Bir Kayıt Seçin",
+  "success_added": "Başarılı bir şekilde eklendi.",
+  "success_imported": "Başarılı bir şekilde içeri aktarıldı."
 }
