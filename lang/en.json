@@ -31,5 +31,7 @@
   "copy_pw_": "Password copied to clipboard.",
   "sensitive": "Sensitive data from PassWall",
   "no_title": "NoTitle",
-  "select": "Select a Login"
+  "select": "Select a Login",
+  "success_added": "It is added successfully",
+  "success_imported": "File is imported successfully"
 }

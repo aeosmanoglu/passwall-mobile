@@ -81,7 +81,7 @@ class Antenna {
     return credentials;
   }
 
-  deleteCredential(int id) async {
+  Future<bool> deleteCredential(int id) async {
     print("Deleting credential the number $id");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
@@ -91,9 +91,10 @@ class Antenna {
     Response response = await delete(url, headers: headers);
     Map<String, dynamic> answer = jsonDecode(response.body);
     print(answer["Message"] ?? answer["message"]);
+    return response.statusCode == 200;
   }
 
-  create({String title = "", String username = "", String password}) async {
+  Future<bool> create({String title = "", String username = "", String password}) async {
     print("Creating a new credential");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
@@ -103,6 +104,7 @@ class Antenna {
     String body = jsonEncode({"URL": title, "Username": username, "Password": password});
     Response response = await post(url, headers: headers, body: body);
     response.statusCode == 200 ? print("created") : print("Samething went wrong!");
+    return response.statusCode == 200;
   }
 
   Future<String> generatePassword() async {

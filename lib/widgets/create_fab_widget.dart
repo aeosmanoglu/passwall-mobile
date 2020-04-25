@@ -3,21 +3,30 @@ import 'package:Passwall/localization/localization.dart';
 import 'package:Passwall/utils/antenna.dart';
 
 class FABWidget extends StatefulWidget {
+  Function hasAdded;
+
+  FABWidget(this.hasAdded);
+
   @override
   _FABWidgetState createState() => _FABWidgetState();
 }
 
 class _FABWidgetState extends State<FABWidget> {
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      child: Icon(Icons.add),
-      onPressed: dialog,
+        child: Icon(Icons.add),
+        onPressed: () {
+          dialog().then((data) {
+            widget.hasAdded(data);
+          });
+        }
     );
   }
 
-  void dialog() {
-    showDialog(
+  Future<bool> dialog() {
+    return showDialog(
       context: context,
       builder: (BuildContext context) {
         String title = "";
@@ -40,7 +49,8 @@ class _FABWidgetState extends State<FABWidget> {
               ),
               TextField(
                 autocorrect: false,
-                decoration: InputDecoration(labelText: AppLocalizations.of(context).trans('username')),
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context).trans('username')),
                 onChanged: (text) {
                   username = text;
                 },
@@ -70,9 +80,13 @@ class _FABWidgetState extends State<FABWidget> {
                 if (title == null || title == "") {
                   title = AppLocalizations.of(context).trans('no_title');
                 }
-                await Antenna().create(title: title, username: username, password: password);
-                Navigator.of(context).pop();
-                setState(() {});
+                bool response = await Antenna().create(
+                    title: title, username: username, password: password);
+                if (response) {
+                  Navigator.of(context).pop(true);
+                  return;
+                }
+                Navigator.of(context).pop(false);
               },
             ),
           ],
