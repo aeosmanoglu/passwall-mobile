@@ -10,4 +10,4 @@
 
 1. Don't mess with the user interface. The design guide has not been released yet.
 
-> When you want to connect to the localhost server with the Android emulator, you connect to the emulator's localhost server and you get an error. Instead, try connecting to the [Heroku Demo server](https://passwall-server.herokuapp.com).
+> If you want to connect to the localhost server with the Android emulator, you need to write `http://10.0.2.2:3625` or you can use our demo server: [Heroku Demo server](https://passwall-server.herokuapp.com).
