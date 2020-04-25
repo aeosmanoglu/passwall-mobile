@@ -144,7 +144,7 @@ jobs:
         uses: svenstaro/upload-release-action@1.0.1
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/macos/Build/Products/Release/passwall.dmg
-          asset_name: PassWall.app
+          file: passwall.dmg
+          asset_name: passwall.dmg
           tag: v0.5.3
           overwrite: true
