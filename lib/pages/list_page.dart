@@ -78,11 +78,11 @@ class _ListPageState extends State<ListPage> {
     if (data) {
       setState(() {});
       _scaffoldKey.currentState.showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context).trans('success_added')), duration: Duration(milliseconds: 700),)
+          SnackBar(content: Text(AppLocalizations.of(context).trans('success_added')))
       );
     } else {
       _scaffoldKey.currentState.showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context).trans('swr')), duration: Duration(milliseconds: 700),)
+          SnackBar(content: Text(AppLocalizations.of(context).trans('swr')))
       );
     }
   }

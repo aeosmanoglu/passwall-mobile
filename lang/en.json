@@ -32,6 +32,6 @@
   "sensitive": "Sensitive data from PassWall",
   "no_title": "NoTitle",
   "select": "Select a Login",
-  "success_added": "It is added successfully",
+  "success_added": "New Login added successfully",
   "success_imported": "File is imported successfully"
 }

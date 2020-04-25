@@ -18,10 +18,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Credential selectedValue;
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("PassWall", style: TextStyle(fontFamily: "serif", fontWeight: FontWeight.w900)),
         centerTitle: true,
@@ -85,6 +87,20 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+      floatingActionButton: FABWidget(hasAdded),
     );
+  }
+
+  hasAdded(data) {
+    if (data) {
+      setState(() {});
+      _scaffoldKey.currentState.showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context).trans('success_added')))
+      );
+    } else {
+      _scaffoldKey.currentState.showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context).trans('swr')))
+      );
+    }
   }
 }

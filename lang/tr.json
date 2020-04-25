@@ -32,6 +32,6 @@
   "sensitive": "PassWall'dan hassas içerik",
   "no_title": "Başlıksız",
   "select": "Bir Kayıt Seçin",
-  "success_added": "Başarılı bir şekilde eklendi.",
-  "success_imported": "Başarılı bir şekilde içeri aktarıldı."
+  "success_added": "Yeni kayıt başarılı bir şekilde eklendi.",
+  "success_imported": "Dosya başarılı bir şekilde içeri aktarıldı."
 }
