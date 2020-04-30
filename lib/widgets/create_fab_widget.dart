@@ -19,7 +19,9 @@ class _FABWidgetState extends State<FABWidget> {
         child: Icon(Icons.add),
         onPressed: () {
           dialog().then((data) {
-            widget.hasAdded(data);
+            if (data != null) {
+              widget.hasAdded(data);
+            }
           });
         }
     );
