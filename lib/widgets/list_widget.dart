@@ -48,7 +48,7 @@ class _ListWidgetState extends State<ListWidget> {
                     );
                   default:
                     if (snapshot.hasError) {
-                      return Text(snapshot.error);
+                      return Text(snapshot.error.toString());
                     } else if (snapshot.data.length == 0 || snapshot.data == null) {
                       return Expanded(
                         child: Column(

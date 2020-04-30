@@ -46,5 +46,7 @@
        <string>fetch</string>
        <string>remote-notification</string>
     </array>
+    <key>NSFaceIDUsageDescription</key>
+    <string>What could be more powerful than encrypting your passwords biometrically?</string>
 </dict>
 </plist>

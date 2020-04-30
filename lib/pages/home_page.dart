@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 import 'about_page.dart';
 import 'login_page.dart';
 import 'detail_page.dart';
+import 'package:Passwall/utils/gatekeeper.dart';
 import 'package:Passwall/utils/objects.dart';
 import 'package:Passwall/widgets/create_fab_widget.dart';
 import 'package:Passwall/widgets/detail_widget.dart';
@@ -20,9 +22,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Credential _selectedValue;
-  bool _isLargeScreen;
+  bool _isLargeScreen,
+      _isSafe = true;
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  AppLifecycleState appLifecycleState;
 
   @override
   void initState() {
@@ -41,10 +43,22 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.resumed:
-        _try2login();
+        setState(() {});
+        (_isSafe)
+            ? _try2login()
+            : GateKeeper().authenticator(context).then((success) {
+          if (success) {
+            _isSafe = success;
+            _try2login();
+          }
+        });
+        break;
+      case AppLifecycleState.paused:
+        Timer(Duration(minutes: 5), () {
+          _isSafe = false;
+        });
         break;
       case AppLifecycleState.inactive:
-      case AppLifecycleState.paused:
       case AppLifecycleState.detached:
         break;
     }
@@ -55,9 +69,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     String server = preferences.getString("server") ?? "";
     String username = preferences.getString("username") ?? "";
     String password = preferences.getString("password") ?? "";
-    Antenna()
-        .login(username, password, server)
-        .then((success) {
+    Antenna().login(username, password, server).then((success) {
       if (!success) {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new LoginPage()));
       }

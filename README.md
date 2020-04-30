@@ -36,14 +36,15 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 - [x] Preparation for Windows, Linux and browser applications
 - [x] Application architecture overhaul and renewal
+- [x] Biometric Authentication
+- [ ] Dark Mode
 
 ## In the future
 
 - [ ] The list on the main page can be sorted according to the request of the user
 - [ ] Ability to share content to PassWall from another application
-- [ ] Biometric Authentication
 - [ ] iOS Blur Screen when the app is in the background
-- [ ] Dark Mode
+
 
 ## Some Screen Shots
 

@@ -2,6 +2,7 @@ import 'package:Passwall/pages/home_page.dart';
 import 'package:Passwall/utils/antenna.dart';
 import 'package:Passwall/localization/localization_delegate.dart';
 import 'package:Passwall/pages/login_page.dart';
+import 'package:Passwall/utils/gatekeeper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,10 +54,25 @@ class Gate extends StatefulWidget {
 class _GateState extends State<Gate> {
   @override
   Widget build(BuildContext context) {
-    _try2login();
+    return Scaffold(
+      body: Center(
+        child: IconButton(
+          icon: Icon(
+            Icons.fingerprint,
+            size: 48,
+          ),
+          onPressed: _entrance,
+        ),
+      ),
+    );
+  }
 
-    return Center(
-      child: CircularProgressIndicator(),
+  _entrance() {
+    GateKeeper().authenticator(context).then(
+          (success) =>
+      {
+        if (success) {_try2login()}
+      },
     );
   }
 

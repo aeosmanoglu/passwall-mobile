@@ -40,7 +40,9 @@ class _AboutPageState extends State<AboutPage> {
                       "esys_flutter_share, "
                       "path_provider, "
                       "file_picker, "
-                      "link"),
+                      "link, "
+                      "local_auth"
+                  ),
                 ],
               ),
             ),

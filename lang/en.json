@@ -34,5 +34,6 @@
   "select": "Select a Login",
   "success_added": "New Login added successfully",
   "success_imported": "File is imported successfully",
-  "search": "Search"
+  "search": "Search",
+  "auth_reason": "What could be more powerful than encrypting your passwords biometrically?"
 }

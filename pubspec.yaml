@@ -3,7 +3,7 @@ description: PassWall Mobile is a mobile client for PassWall API written with Fl
 version: 0.5.4+8
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -16,6 +16,7 @@ dependencies:
   path_provider:
   file_picker: # TODO: https://github.com/miguelpruivo/flutter_file_picker/wiki/Setup#--desktop-go-flutter
   link:
+  local_auth:
 
 dev_dependencies:
   flutter_test:
