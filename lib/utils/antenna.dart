@@ -1,4 +1,4 @@
-import 'package:Passwall/utils/objects.dart';
+import 'objects.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
@@ -8,35 +8,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http_parser/http_parser.dart';
 
 class Antenna {
-  /// This is the main function that the access token still valid.
-  /// So we can understand user is authorized or not.
-  // TODO: Must use every connection
-  Future<bool> gateKeeper(String token) async {
-    print("Gate Keeper patrolling...");
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String server = preferences.getString("server");
-    String url = "$server/auth/check";
-    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
-    Response response;
-
-    // Sometimes the token may come null or "". When it happens, flutter can not parse
-    // the header value. Fot that reason, we are trying to get response.
-    try {
-      response = await post(url, headers: headers);
-    } catch (e) {
-      print(e);
-      return false;
-    }
-
-    Map<String, dynamic> answer = jsonDecode(response.body);
-    print(answer["Message"] ?? answer["message"]);
-    return response.statusCode == 200 ? true : false;
-  }
-
   Future<bool> login(String username, String password, server) async {
     print("User logging in...");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("server", server);
+    preferences.setString("username", username);
+    preferences.setString("password", password);
     String url = "$server/auth/signin";
     Map<String, String> headers = {HttpHeaders.contentTypeHeader: "application/json"};
     String body = jsonEncode({"Username": username, "Password": password});

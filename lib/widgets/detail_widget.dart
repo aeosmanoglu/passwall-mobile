@@ -13,19 +13,19 @@ class DetailWidget extends StatefulWidget {
 }
 
 class _DetailWidgetState extends State<DetailWidget> {
-  TextEditingController urlController = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  String url, username, password;
+  TextEditingController _urlController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  String _url, _username, _password;
 
   @override
   Widget build(BuildContext context) {
-    url = widget.credential?.url ?? "";
-    username = widget.credential?.username ?? "";
-    password = widget.credential?.password ?? "";
-    urlController.text = url;
-    usernameController.text = username;
-    passwordController.text = password;
+    _url = widget.credential?.url ?? "";
+    _username = widget.credential?.username ?? "";
+    _password = widget.credential?.password ?? "";
+    _urlController.text = _url;
+    _usernameController.text = _username;
+    _passwordController.text = _password;
     return (widget.credential == null)
         ? Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,29 +36,29 @@ class _DetailWidgetState extends State<DetailWidget> {
         Text(AppLocalizations.of(context).trans('select'), style: Theme
             .of(context)
             .textTheme
-            .title)
+            .headline6)
       ],
     )
         : ListView(
       padding: EdgeInsets.all(40),
       children: <Widget>[
-        textField(
+        _textField(
           label: AppLocalizations.of(context).trans('url'),
-          controller: urlController,
+          controller: _urlController,
           icon: Icon(Icons.language),
           i: 0,
         ),
         SizedBox(height: 10),
-        textField(
+        _textField(
           label: AppLocalizations.of(context).trans('username'),
-          controller: usernameController,
+          controller: _usernameController,
           icon: Icon(Icons.perm_identity),
           i: 1,
         ),
         SizedBox(height: 10),
-        textField(
+        _textField(
           label: AppLocalizations.of(context).trans('password'),
-          controller: passwordController,
+          controller: _passwordController,
           icon: Icon(Icons.lock_open),
           font: "mono",
           i: 2,
@@ -71,9 +71,9 @@ class _DetailWidgetState extends State<DetailWidget> {
             FlatButton.icon(
               onPressed: () async {
                 await Antenna().generatePassword().then((onValue) {
-                  password = onValue;
+                  _password = onValue;
                   setState(() {
-                    passwordController.text = onValue;
+                    _passwordController.text = onValue;
                   });
                 });
               },
@@ -82,7 +82,7 @@ class _DetailWidgetState extends State<DetailWidget> {
             ),
             RaisedButton.icon(
               onPressed: () async {
-                await Antenna().update(widget.credential.id, url, username, password);
+                await Antenna().update(widget.credential.id, _url, _username, _password);
                 Navigator.of(context).pop();
                 setState(() {});
               },
@@ -101,7 +101,7 @@ class _DetailWidgetState extends State<DetailWidget> {
     );
   }
 
-  Widget textField({
+  Widget _textField({
     String font,
     TextEditingController controller,
     String label,
@@ -117,17 +117,17 @@ class _DetailWidgetState extends State<DetailWidget> {
         switch (i) {
           case 0:
             {
-              url = text;
+              _url = text;
               break;
             }
           case 1:
             {
-              username = text;
+              _username = text;
               break;
             }
           case 2:
             {
-              password = text;
+              _password = text;
               break;
             }
         }

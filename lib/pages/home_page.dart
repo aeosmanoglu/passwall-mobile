@@ -1,13 +1,15 @@
+import 'dart:io';
+import 'dart:ui';
+import 'about_page.dart';
+import 'login_page.dart';
+import 'detail_page.dart';
 import 'package:Passwall/utils/objects.dart';
 import 'package:Passwall/widgets/create_fab_widget.dart';
 import 'package:Passwall/widgets/detail_widget.dart';
 import 'package:Passwall/widgets/list_widget.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:Passwall/pages/about_page.dart';
 import 'package:Passwall/utils/antenna.dart';
 import 'package:Passwall/localization/localization.dart';
-import 'package:Passwall/pages/login_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,12 +18,62 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  Credential selectedValue;
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+  Credential _selectedValue;
+  bool _isLargeScreen;
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  AppLifecycleState appLifecycleState;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        _try2login();
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+        break;
+    }
+  }
+
+  _try2login() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String server = preferences.getString("server") ?? "";
+    String username = preferences.getString("username") ?? "";
+    String password = preferences.getString("password") ?? "";
+    Antenna()
+        .login(username, password, server)
+        .then((success) {
+      if (!success) {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new LoginPage()));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600) {
+      _isLargeScreen = true;
+    } else {
+      _isLargeScreen = false;
+    }
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -44,7 +96,6 @@ class _HomePageState extends State<HomePage> {
                     file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['csv']);
                     await Antenna().import(file);
                     setState(() {});
-                    //TODO: Add a snackbar
                     break;
                   }
                 case 1:
@@ -62,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                     print("Loging out");
                     SharedPreferences preferences = await SharedPreferences.getInstance();
                     preferences.remove("token");
+                    preferences.remove("password");
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new LoginPage()));
                   }
               }
@@ -71,36 +123,34 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Row(
         children: <Widget>[
-          Material(
-            elevation: 4,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width / 3,
-              child: ListWidget(onItemSelected: (value) {
-                setState(() {
-                  selectedValue = value;
-                });
-              }),
-            ),
-          ),
           Expanded(
-            child: DetailWidget(selectedValue),
-          )
+            child: ListWidget(onItemSelected: (value) {
+              if (_isLargeScreen) {
+                setState(() {
+                  _selectedValue = value;
+                });
+              } else {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return DetailPage(value);
+                  },
+                ));
+              }
+            }),
+          ),
+          _isLargeScreen ? Expanded(child: DetailWidget(_selectedValue)) : Container(),
         ],
       ),
-      floatingActionButton: FABWidget(hasAdded),
+      floatingActionButton: FABWidget(_hasAdded),
     );
   }
 
-  hasAdded(data) {
+  _hasAdded(data) {
     if (data) {
       setState(() {});
-      _scaffoldKey.currentState.showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context).trans('success_added')))
-      );
+      _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).trans('success_added'))));
     } else {
-      _scaffoldKey.currentState.showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context).trans('swr')))
-      );
+      _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).trans('swr'))));
     }
   }
 }

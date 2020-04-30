@@ -1,6 +1,5 @@
-import 'package:Passwall/pages/home_page.dart';
+import 'home_page.dart';
 import 'package:Passwall/utils/antenna.dart';
-import 'package:Passwall/pages/list_page.dart';
 import 'package:Passwall/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,10 +10,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController baseUrlController = TextEditingController();
-  String baseURL, username, password;
+  TextEditingController _baseUrlController = TextEditingController();
+  String _baseURL, _username, _password;
 
-  Widget textField({
+  Widget _textField({
     TextEditingController controller,
     bool autoFocus,
     bool obscure,
@@ -32,17 +31,17 @@ class _LoginPageState extends State<LoginPage> {
         switch (i) {
           case 0:
             {
-              baseURL = text;
+              _baseURL = text;
               break;
             }
           case 1:
             {
-              username = text;
+              _username = text;
               break;
             }
           case 2:
             {
-              password = text;
+              _password = text;
               break;
             }
         }
@@ -56,17 +55,17 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  getBaseURL() async {
+  _getBaseURL() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    baseURL = preferences.getString("server");
+    _baseURL = preferences.getString("server");
     setState(() {
-      baseUrlController.text = baseURL;
+      _baseUrlController.text = _baseURL;
     });
   }
 
   @override
   void initState() {
-    getBaseURL();
+    _getBaseURL();
     super.initState();
   }
 
@@ -80,8 +79,8 @@ class _LoginPageState extends State<LoginPage> {
             child: ListView(
               padding: EdgeInsets.all(40),
               children: <Widget>[
-                textField(
-                  controller: baseUrlController,
+                _textField(
+                  controller: _baseUrlController,
                   autoFocus: false,
                   obscure: false,
                   label: AppLocalizations.of(context).trans('base_URL'),
@@ -90,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   i: 0,
                 ),
                 SizedBox(height: 10),
-                textField(
+                _textField(
                   autoFocus: true,
                   obscure: false,
                   label: AppLocalizations.of(context).trans('username'),
@@ -98,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   i: 1,
                 ),
                 SizedBox(height: 10),
-                textField(
+                _textField(
                   autoFocus: false,
                   obscure: true,
                   label: AppLocalizations.of(context).trans('password'),
@@ -109,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                 FlatButton(
                   child: Text(AppLocalizations.of(context).trans('login')),
                   onPressed: () {
-                    login();
+                    _login();
                   },
                 )
               ],
@@ -120,39 +119,29 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  login() {
-    Antenna().login(username, password, baseURL).then((success) {
-      if (success) {
-        if (MediaQuery
-            .of(context)
-            .size
-            .shortestSide < 600) {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new ListPage()));
-        } else {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomePage()));
-        }
-      } else {
-        dialog();
-      }
+  _login() {
+    Antenna().login(_username, _password, _baseURL).then((success) {
+      (success) ? Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomePage())) : _dialog();
     });
   }
 
-  void dialog() {
+  void _dialog() {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(AppLocalizations.of(context).trans('swr')),
-            content: Text(AppLocalizations.of(context).trans('swr_')),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(AppLocalizations.of(context).trans('ok')),
-              )
-            ],
-          );
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context).trans('swr')),
+          content: Text(AppLocalizations.of(context).trans('swr_')),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(AppLocalizations.of(context).trans('ok')),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

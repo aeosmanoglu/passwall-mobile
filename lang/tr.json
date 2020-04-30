@@ -33,5 +33,6 @@
   "no_title": "Başlıksız",
   "select": "Bir Kayıt Seçin",
   "success_added": "Yeni kayıt başarılı bir şekilde eklendi.",
-  "success_imported": "Dosya başarılı bir şekilde içeri aktarıldı."
+  "success_imported": "Dosya başarılı bir şekilde içeri aktarıldı.",
+  "search": "Ara"
 }

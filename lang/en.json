@@ -33,5 +33,6 @@
   "no_title": "NoTitle",
   "select": "Select a Login",
   "success_added": "New Login added successfully",
-  "success_imported": "File is imported successfully"
+  "success_imported": "File is imported successfully",
+  "search": "Search"
 }

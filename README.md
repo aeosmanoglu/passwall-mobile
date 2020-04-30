@@ -8,13 +8,15 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 ## Getting Started
 
-1. First, clone the [server app](https://github.com/pass-wall/passwall-server) and buld it.
+1. Clone the [server app](https://github.com/pass-wall/passwall-server) and build it.
 
-1. Then, [Install](https://flutter.dev/docs/get-started/install) Flutter, clone the repository  and let’s Rock!
+1. Clone Flutter master branch to your Workspace with `git clone https://github.com/flutter/flutter.git -b master`.
 
-1. Do not forget the  `flutter pub get` 
+1. Add `/flutter/bin` to your path.
 
-> For help getting started with Flutter, view their [online documentation](https://flutter.dev/docs), which offers tutorials, samples, guidance on mobile development, and a full API reference.
+1. Run `flutter doctor -v` and cure if any disease.
+
+1. Run `flutter pub get` in repository clone
 
 ## Hello Contributers
 
@@ -30,46 +32,18 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 > If you want to connect to the localhost server with the Android emulator, you need to write `http://10.0.2.2:3625` or you can use our demo server: [Heroku Demo server](https://passwall-server.herokuapp.com).
 
-## Mile Stones
+## Working on
 
-- [x] v0.1.0 Waking Up
-	- [x] Authentication
-		- [x] Login
-		- [x] Check token. If valid, redirect to main screen
-		- [x] Logout
-	- [x] Get all credentials *(Url or Title, Username and Password)* and list them on the main screen
-	- [x] Search in credentials
-	- [x] Copy password
-- [x] v0.2.0 Growing Up
-	- [x] Pull to refresh in main screen
-	- [x] Swipe to delete credential
-	- [x] Update credential
-	- [x] Create new credential
-	- [x] Generate password
-	- [ ] ~~Order the list~~ *postponed*
-	- [x] Keeping logs
-- [x] v0.3.0 Sharing
-	- [x] Export credential and share
-	- [x] Import credential
-	    - [x] With file pick
-	    - [ ] ~~Share Intent~~ *postponed*
-- [x] v0.4.0 Polishing
-	- [x] Logo and Name
-	- [x] UI customise *Not bad for now i guess*
-	- [x] About page  
-	- [x] Re-design for large screens
-- [ ] v0.5.0 Securing
-	- [ ] Biometric Auth
-	- [ ] iOS Blur Screen when the app is in the background
-- [ ] v0.6.0 Powering Up
-	- [ ] Dark Mode
-	- [x] Localization
-- [ ] V1.0.0 Compile’n release
-    - [x] AndroidOS
-    - [x] MacOS
-    - [ ] Windows
-    - [ ] Browser
-    - [ ] ~~iOS~~
+- [x] Preparation for Windows, Linux and browser applications
+- [x] Application architecture overhaul and renewal
+
+## In the future
+
+- [ ] The list on the main page can be sorted according to the request of the user
+- [ ] Ability to share content to PassWall from another application
+- [ ] Biometric Authentication
+- [ ] iOS Blur Screen when the app is in the background
+- [ ] Dark Mode
 
 ## Some Screen Shots
 

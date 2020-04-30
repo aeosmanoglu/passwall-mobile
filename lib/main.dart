@@ -1,6 +1,5 @@
 import 'package:Passwall/pages/home_page.dart';
 import 'package:Passwall/utils/antenna.dart';
-import 'package:Passwall/pages/list_page.dart';
 import 'package:Passwall/localization/localization_delegate.dart';
 import 'package:Passwall/pages/login_page.dart';
 import 'package:flutter/material.dart';
@@ -54,34 +53,20 @@ class Gate extends StatefulWidget {
 class _GateState extends State<Gate> {
   @override
   Widget build(BuildContext context) {
-    // Check the user authorized or not
-    getToken().then((token) => router(token));
+    _try2login();
 
     return Center(
       child: CircularProgressIndicator(),
     );
   }
 
-  Future<String> getToken() async {
+  _try2login() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    String token = preferences.getString("token");
-    return token;
-  }
-
-  router(String token) {
-    Antenna().gateKeeper(token).then((success) {
-      if (success) {
-        if (MediaQuery
-            .of(context)
-            .size
-            .shortestSide < 600) {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new ListPage()));
-        } else {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new HomePage()));
-        }
-      } else {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => new LoginPage()));
-      }
-    });
+    String server = preferences.getString("server") ?? "";
+    String username = preferences.getString("username") ?? "";
+    String password = preferences.getString("password") ?? "";
+    Antenna()
+        .login(username, password, server)
+        .then((success) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (success) ? new HomePage() : new LoginPage())));
   }
 }
