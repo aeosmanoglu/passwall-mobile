@@ -36,7 +36,7 @@ class _DetailWidgetState extends State<DetailWidget> {
         Text(AppLocalizations.of(context).trans('select'), style: Theme
             .of(context)
             .textTheme
-            .headline6)
+            .title)
       ],
     )
         : ListView(

@@ -59,7 +59,7 @@ class _ListWidgetState extends State<ListWidget> {
                             Text(AppLocalizations.of(context).trans('no_data'), style: Theme
                                 .of(context)
                                 .textTheme
-                                .headline6)
+                                .title)
                           ],
                         ),
                       );
@@ -110,7 +110,7 @@ class _ListWidgetState extends State<ListWidget> {
                                           style: Theme
                                               .of(context)
                                               .textTheme
-                                              .headline4,
+                                              .display1,
                                         ),
                                         width: 40,
                                         height: 40,
