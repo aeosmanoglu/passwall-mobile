@@ -28,7 +28,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # apk-arm
       - name: Build APK android-arm
@@ -39,7 +39,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-arm.apk
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # apk-arm64
       - name: Build APK android-arm64
@@ -50,7 +50,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-arm64.apk
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # apk-x64
       - name: Build APK android-x64
@@ -61,7 +61,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/apk/release/app-release.apk
           asset_name: app-release-android-x64.apk
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # Build BUNDLE
       - name: Build Bundle
@@ -72,7 +72,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release.aab
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # aab-arm
       - name: Build Bundle android-arm
@@ -83,7 +83,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-arm.aab
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # aab-arm64
       - name: Build Bundle android-arm64
@@ -94,7 +94,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-arm64.aab
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # aab-x64
       - name: Build Bundle android-x64
@@ -105,7 +105,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/bundle/release/app-release.aab
           asset_name: app-release-android-x64.aab
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
       # Build Desktop
       - name: Build macOS App
@@ -118,5 +118,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: passwall.dmg
           asset_name: passwall.dmg
-          tag: v0.5.4
+          tag: v0.5.5
           overwrite: true
