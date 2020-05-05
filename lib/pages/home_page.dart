@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  Credential _selectedValue;
+  Login _selectedValue;
   bool _isLargeScreen,
       _isSafe = true;
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -142,11 +142,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   _selectedValue = value;
                 });
               } else {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return DetailPage(value);
-                  },
-                ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(value))).then((value) {
+                  setState(() {});
+                });
               }
             }),
           ),
