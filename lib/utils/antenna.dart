@@ -25,58 +25,58 @@ class Antenna {
       return false;
     }
     Map<String, dynamic> answer = jsonDecode(response.body);
-    print(answer["message"] ?? answer["token"]);
+    print(answer["message"] ?? answer["access_token"]);
     if (response.statusCode == 200) {
-      preferences.setString("token", answer["token"]);
+      preferences.setString("token", answer["access_token"]);
       return true;
     } else {
       return false;
     }
   }
 
-  Future<List<Credential>> getCredentials() async {
-    print("Geting credentials...");
+  Future<List<Login>> getAllLogins() async {
+    print("Geting logins...");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins";
+    String url = "$server/api/logins";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response = await get(url, headers: headers);
-    List<Credential> credentials = (jsonDecode(response.body) as List).map((i) => Credential.fromJson(i)).toList();
-    return credentials;
+    List<Login> logins = (jsonDecode(response.body) as List).map((i) => Login.fromJson(i)).toList();
+    return logins;
   }
 
-  Future<List<Credential>> search(String searchQuery) async {
+  Future<List<Login>> search(String searchQuery) async {
     print("Searching: $searchQuery");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins/?Search=$searchQuery";
+    String url = "$server/api/logins/?Search=$searchQuery";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response = await get(url, headers: headers);
-    List<Credential> credentials = (jsonDecode(response.body) as List).map((i) => Credential.fromJson(i)).toList();
-    return credentials;
+    List<Login> logins = (jsonDecode(response.body) as List).map((i) => Login.fromJson(i)).toList();
+    return logins;
   }
 
-  Future<bool> deleteCredential(int id) async {
-    print("Deleting credential the number $id");
+  Future<bool> deleteLogin(int id) async {
+    print("Deleting login the number $id");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins/$id";
+    String url = "$server/api/logins/$id";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response = await delete(url, headers: headers);
     Map<String, dynamic> answer = jsonDecode(response.body);
-    print(answer["Message"] ?? answer["message"]);
+    print(answer["message"]);
     return response.statusCode == 200;
   }
 
-  Future<bool> create({String title = "", String username = "", String password}) async {
-    print("Creating a new credential");
+  Future<bool> createNewLogin({String title = "", String username = "", String password}) async {
+    print("Creating a new login");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins/";
+    String url = "$server/api/logins/";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "application/json"};
     String body = jsonEncode({"URL": title, "Username": username, "Password": password});
     Response response = await post(url, headers: headers, body: body);
@@ -89,19 +89,19 @@ class Antenna {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins/generate-password";
+    String url = "$server/api/logins/generate-password";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response = await post(url, headers: headers);
     Map<String, dynamic> answer = jsonDecode(response.body);
-    return answer["Message"] ?? answer["message"];
+    return answer["message"];
   }
 
   update(int id, String title, String username, String password) async {
-    print("Updating credential the number $id");
+    print("Updating login the number $id");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins/$id";
+    String url = "$server/api/logins/$id";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "application/json"};
     String body = jsonEncode({"URL": title, "Username": username, "Password": password});
     Response response = await put(url, headers: headers, body: body);
@@ -125,7 +125,7 @@ class Antenna {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins/export";
+    String url = "$server/api/logins/export";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response = await post(url, headers: headers);
     final file = await secretarial();
@@ -145,7 +145,7 @@ class Antenna {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/logins/import";
+    String url = "$server/api/logins/import";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "multipart/form-data"};
     Uri uri = Uri.parse(url);
     MultipartRequest multipartRequest = MultipartRequest("POST", uri);

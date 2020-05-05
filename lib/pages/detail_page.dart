@@ -3,7 +3,7 @@ import 'package:Passwall/widgets/detail_widget.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
-  final Credential credential;
+  final Login credential;
   DetailPage(this.credential);
 
   @override

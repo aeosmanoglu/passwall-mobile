@@ -5,7 +5,7 @@ import 'package:Passwall/localization/localization.dart';
 import 'package:Passwall/utils/objects.dart';
 import 'package:flutter/material.dart';
 
-typedef Null ItemSelectedCallback(Credential value);
+typedef Null ItemSelectedCallback(Login value);
 
 class ListWidget extends StatefulWidget {
   final ItemSelectedCallback onItemSelected;
@@ -18,17 +18,17 @@ class ListWidget extends StatefulWidget {
 
 class _ListWidgetState extends State<ListWidget> {
   String _searchQuery = "";
-  Future<List<Credential>> _future;
+  Future<List<Login>> _future;
 
   @override
   void initState() {
-    _future = Antenna().getCredentials();
+    _future = Antenna().getAllLogins();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    _future = _searchQuery == "" ? Antenna().getCredentials() : Antenna().search(_searchQuery);
+    _future = _searchQuery == "" ? Antenna().getAllLogins() : Antenna().search(_searchQuery);
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: _refresh,
@@ -36,7 +36,7 @@ class _ListWidgetState extends State<ListWidget> {
           children: <Widget>[
             FutureBuilder(
               future: _future,
-              builder: (BuildContext context, AsyncSnapshot<List<Credential>> snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<List<Login>> snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
@@ -81,7 +81,7 @@ class _ListWidgetState extends State<ListWidget> {
                                 ),
                               ),
                               onDismissed: (direction) async {
-                                bool response = await Antenna().deleteCredential(snapshot.data[index].id);
+                                bool response = await Antenna().deleteLogin(snapshot.data[index].id);
                                 if (response) {
                                   setState(() {});
                                 }
@@ -154,7 +154,7 @@ class _ListWidgetState extends State<ListWidget> {
                                           }
                                         case 2:
                                           {
-                                            Credential i = snapshot.data[index];
+                                            Login i = snapshot.data[index];
                                             Share.text(
                                               AppLocalizations.of(context).trans('sensitive'),
                                               AppLocalizations.of(context).trans('sensitive') +
