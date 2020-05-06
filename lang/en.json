@@ -35,5 +35,6 @@
   "success_added": "New Login added successfully",
   "success_imported": "File is imported successfully",
   "search": "Search",
-  "auth_reason": "What could be more powerful than encrypting your passwords biometrically?"
+  "auth_reason": "What could be more powerful than encrypting your passwords biometrically?",
+  "hall_of_fames": "Hall of Fames"
 }

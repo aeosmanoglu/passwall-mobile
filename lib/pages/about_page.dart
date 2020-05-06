@@ -47,8 +47,21 @@ class _AboutPageState extends State<AboutPage> {
               ),
             ),
             ListTile(
+              title: Text(AppLocalizations.of(context).trans('hall_of_fames')),
+              subtitle: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Link(child: Text("Abuzer Emre Osmanoğlu", style: TextStyle(color: Colors.blue)), url: "https://github.com/aeosmanoglu"),
+                  Link(child: Text("Taha Tepedelen", style: TextStyle(color: Colors.blue)), url: "https://github.com/aslanyi"),
+                  Link(child: Text("Volkan Şahin", style: TextStyle(color: Colors.blue)), url: "https://vsahin.com"),
+                  Link(child: Text("Emre Uzun", style: TextStyle(color: Colors.blue)), url: "https://github.com/uzunemre"),
+                ],
+              ),
+            ),
+            ListTile(
               title: Text(AppLocalizations.of(context).trans('version')),
-              subtitle: Text("0.5.5", style: TextStyle(fontFamily: "mono")),
+              subtitle: Text("0.5.6 Build.10", style: TextStyle(fontFamily: "mono")),
             ),
           ],
         ),
