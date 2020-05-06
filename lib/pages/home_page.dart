@@ -22,14 +22,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Login _selectedValue;
-  bool _isLargeScreen,
-      _isSafe = true;
+  bool _isLargeScreen, _isSafe = true;
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  Timer _timer;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _keepAlwaysLoggedIn();
   }
 
   @override
@@ -44,16 +45,20 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     switch (state) {
       case AppLifecycleState.resumed:
         setState(() {});
-        (_isSafe)
-            ? _try2login()
-            : GateKeeper().authenticator(context).then((success) {
-          if (success) {
-            _isSafe = success;
-            _try2login();
-          }
-        });
+        if (_isSafe) {
+          _keepAlwaysLoggedIn();
+          _try2login();
+        } else {
+          GateKeeper().authenticator(context).then((success) {
+            if (success) {
+              _isSafe = success;
+              _try2login();
+            }
+          });
+        }
         break;
       case AppLifecycleState.paused:
+        _timer.cancel();
         Timer(Duration(minutes: 5), () {
           _isSafe = false;
         });
@@ -76,12 +81,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     });
   }
 
+  _keepAlwaysLoggedIn() {
+    Timer.periodic(Duration(minutes: 14), (timer) {
+      _timer = timer;
+      _try2login();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery
-        .of(context)
-        .size
-        .shortestSide > 600) {
+    if (MediaQuery.of(context).size.shortestSide > 600) {
       _isLargeScreen = true;
     } else {
       _isLargeScreen = false;
