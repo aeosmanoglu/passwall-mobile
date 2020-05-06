@@ -76,7 +76,7 @@ class Antenna {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/api/logins/";
+    String url = "$server/api/logins";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "application/json"};
     String body = jsonEncode({"URL": title, "Username": username, "Password": password});
     Response response = await post(url, headers: headers, body: body);
@@ -149,11 +149,11 @@ class Antenna {
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token", HttpHeaders.contentTypeHeader: "multipart/form-data"};
     Uri uri = Uri.parse(url);
     MultipartRequest multipartRequest = MultipartRequest("POST", uri);
-    multipartRequest.fields["URL"] = "URL";
-    multipartRequest.fields["Username"] = "Username";
-    multipartRequest.fields["Password"] = "Password";
+    multipartRequest.fields["url"] = "URL";
+    multipartRequest.fields["username"] = "Username";
+    multipartRequest.fields["password"] = "Password";
     multipartRequest.files.add(MultipartFile.fromString(
-      "File",
+      "file",
       file.readAsStringSync(),
       filename: file.path
           .split("/")

@@ -26,25 +26,11 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 1. First try to fix `//TODO:`s in the code.
 
-1. Then you can contribute to the development by following the mile stones.
+1. Then you can contribute to the development by following the "Passwall Mobile Board in the Projects.
 
 1. Don't mess with the user interface. The design guide has not been released yet.
 
-> If you want to connect to the localhost server with the Android emulator, you need to write `http://10.0.2.2:3625` or you can use our demo server: [Heroku Demo server](https://passwall-server.herokuapp.com).
-
-## Working on
-
-- [ ] Update the app for endpoint changes on server side
-- [ ] Add the contributors name and GitHub profile links to the about page as a sign of respect
-
-
-## In the future
-
-- [ ] The list on the main page can be sorted according to the request of the user
-- [ ] Ability to share content to PassWall from another application
-- [ ] iOS Blur Screen when the app is in the background
-- [ ] Dark Mode
-
+> If you want to connect to the localhost server with the Android emulator, you need to write `http://10.0.2.2:3625` or you can use our demo server: [https://passwall-server.herokuapp.com](https://passwall-server.herokuapp.com).
 
 ## Some Screen Shots
 

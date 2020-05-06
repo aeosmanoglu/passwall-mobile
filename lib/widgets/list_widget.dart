@@ -83,7 +83,9 @@ class _ListWidgetState extends State<ListWidget> {
                               onDismissed: (direction) async {
                                 bool response = await Antenna().deleteLogin(snapshot.data[index].id);
                                 if (response) {
-                                  setState(() {});
+                                  setState(() {
+                                    snapshot.data.remove(Login);
+                                  });
                                 }
                               },
                               confirmDismiss: (DismissDirection direction) async {
@@ -176,7 +178,7 @@ class _ListWidgetState extends State<ListWidget> {
               },
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 5.5, bottom: 14.5),
               child: TextField(
                 autocorrect: false,
                 decoration: InputDecoration(prefixIcon: Icon(Icons.search), border: OutlineInputBorder(borderRadius: BorderRadius.circular(40))),

@@ -142,8 +142,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   _selectedValue = value;
                 });
               } else {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(value))).then((value) {
-                  setState(() {});
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(value))).then((isSaved) {
+                  if (isSaved ?? false) {
+                    setState(() {});
+                  }
                 });
               }
             }),
@@ -154,6 +156,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       floatingActionButton: FABWidget(_hasAdded),
     );
   }
+
+  /// TODO: Looking up a deactivated widget's ancestor is unsafe.
+  /// When searchbar on focus, card popupmenu taped
 
   _hasAdded(data) {
     if (data) {
