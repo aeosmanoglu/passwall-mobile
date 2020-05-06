@@ -51,7 +51,7 @@ class Antenna {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String server = preferences.getString("server");
     String token = preferences.getString("token");
-    String url = "$server/api/logins/?Search=$searchQuery";
+    String url = "$server/api/logins?Search=$searchQuery";
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
     Response response = await get(url, headers: headers);
     List<Login> logins = (jsonDecode(response.body) as List).map((i) => Login.fromJson(i)).toList();
