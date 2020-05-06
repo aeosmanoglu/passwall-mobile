@@ -129,6 +129,7 @@ class _ListWidgetState extends State<ListWidget> {
                                     ],
                                   ),
                                   trailing: PopupMenuButton(
+                                    captureInheritedThemes: false,
                                     icon: Icon(Icons.more_vert),
                                     itemBuilder: (BuildContext context) =>
                                     [
