@@ -79,7 +79,7 @@ class _FABWidgetState extends State<FABWidget> {
                 if (title == null || title == "") {
                   title = AppLocalizations.of(context).trans('no_title');
                 }
-                bool response = await Antenna().create(title: title, username: username, password: password);
+                bool response = await Antenna().createNewLogin(title: title, username: username, password: password);
                 if (response) {
                   Navigator.of(context).pop(true);
                   return;

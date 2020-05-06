@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:Passwall/utils/objects.dart';
 
 class DetailWidget extends StatefulWidget {
-  final Credential credential;
+  final Login credential;
 
   DetailWidget(this.credential);
 
@@ -19,86 +19,87 @@ class _DetailWidgetState extends State<DetailWidget> {
   String _url, _username, _password;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     _url = widget.credential?.url ?? "";
     _username = widget.credential?.username ?? "";
     _password = widget.credential?.password ?? "";
     _urlController.text = _url;
     _usernameController.text = _username;
     _passwordController.text = _password;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return (widget.credential == null)
         ? Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Image.asset("assets/select.png", width: 200),
-        SizedBox(height: 10),
-        Text(AppLocalizations.of(context).trans('select'), style: Theme
-            .of(context)
-            .textTheme
-            .headline6)
-      ],
-    )
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image.asset("assets/select.png", width: 200),
+              SizedBox(height: 10),
+              Text(AppLocalizations.of(context).trans('select'), style: Theme.of(context).textTheme.headline6),
+            ],
+          )
         : ListView(
-      padding: EdgeInsets.all(40),
-      children: <Widget>[
-        _textField(
-          label: AppLocalizations.of(context).trans('url'),
-          controller: _urlController,
-          icon: Icon(Icons.language),
-          i: 0,
-        ),
-        SizedBox(height: 10),
-        _textField(
-          label: AppLocalizations.of(context).trans('username'),
-          controller: _usernameController,
-          icon: Icon(Icons.perm_identity),
-          i: 1,
-        ),
-        SizedBox(height: 10),
-        _textField(
-          label: AppLocalizations.of(context).trans('password'),
-          controller: _passwordController,
-          icon: Icon(Icons.lock_open),
-          font: "mono",
-          i: 2,
-          help: AppLocalizations.of(context).trans('leave_blank'),
-        ),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FlatButton.icon(
-              onPressed: () async {
-                await Antenna().generatePassword().then((onValue) {
-                  _password = onValue;
-                  setState(() {
-                    _passwordController.text = onValue;
-                  });
-                });
-              },
-              icon: Icon(Icons.shuffle),
-              label: Text(AppLocalizations.of(context).trans('gen_pw')),
-            ),
-            RaisedButton.icon(
-              onPressed: () async {
-                await Antenna().update(widget.credential.id, _url, _username, _password);
-                Navigator.of(context).pop();
-                setState(() {});
-              },
-              icon: Icon(
-                Icons.save,
-                color: Colors.white,
+            padding: EdgeInsets.all(40),
+            children: <Widget>[
+              _textField(
+                label: AppLocalizations.of(context).trans('url'),
+                controller: _urlController,
+                icon: Icon(Icons.language),
+                i: 0,
               ),
-              label: Text(
-                AppLocalizations.of(context).trans('save'),
-                style: TextStyle(color: Colors.white),
+              SizedBox(height: 10),
+              _textField(
+                label: AppLocalizations.of(context).trans('username'),
+                controller: _usernameController,
+                icon: Icon(Icons.perm_identity),
+                i: 1,
               ),
-            )
-          ],
-        )
-      ],
-    );
+              SizedBox(height: 10),
+              _textField(
+                label: AppLocalizations.of(context).trans('password'),
+                controller: _passwordController,
+                icon: Icon(Icons.lock_open),
+                font: "mono",
+                i: 2,
+                help: AppLocalizations.of(context).trans('leave_blank'),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton.icon(
+                    onPressed: () async {
+                      await Antenna().generatePassword().then((onValue) {
+                        _password = onValue;
+                        setState(() {
+                          _passwordController.text = onValue;
+                        });
+                      });
+                    },
+                    icon: Icon(Icons.shuffle),
+                    label: Text(AppLocalizations.of(context).trans('gen_pw')),
+                  ),
+                  RaisedButton.icon(
+                    onPressed: () async {
+                      await Antenna().update(widget.credential.id, _url, _username, _password);
+                      Navigator.pop(context, true);
+                    },
+                    icon: Icon(
+                      Icons.save,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      AppLocalizations.of(context).trans('save'),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              )
+            ],
+          );
   }
 
   Widget _textField({

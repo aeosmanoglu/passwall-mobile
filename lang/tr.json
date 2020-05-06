@@ -35,5 +35,6 @@
   "success_added": "Yeni kayıt başarılı bir şekilde eklendi.",
   "success_imported": "Dosya başarılı bir şekilde içeri aktarıldı.",
   "search": "Ara",
-  "auth_reason": "Parolalarınızı biyometrik olarak şifrelemekten daha güçlü ne olabilir ki?"
+  "auth_reason": "Parolalarınızı biyometrik olarak şifrelemekten daha güçlü ne olabilir ki?",
+  "hall_of_fames": "Katkıda Bulunanlar"
 }
