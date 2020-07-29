@@ -10,7 +10,7 @@ PassWall Mobile is a mobile client for PassWall API written with Flutter.
 
 1. Clone the [server app](https://github.com/pass-wall/passwall-server) and build it.
 
-1. Clone Flutter master branch to your Workspace with `git clone https://github.com/flutter/flutter.git -b master`.
+1. [Install Flutter.](https://flutter.dev/docs/get-started/install)
 
 1. Add `/flutter/bin` to your path.
 
